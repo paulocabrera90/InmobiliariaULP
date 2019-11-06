@@ -10,5 +10,7 @@ package pruebagit;
  * @author garba
  */
 public class ClaseJuani {
-    
+    private int edad;
+    private String nombre;
+    private String dsadas;
 }
