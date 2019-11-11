@@ -39,7 +39,10 @@ public class CtrPropietario implements ActionListener{
     @Override
   public void actionPerformed(ActionEvent e){
       
+     
       if (e.getSource()==frmP.btnGuardar){
+          
+      try{
           pod.setDni_propietario(Integer.parseInt(frmP.jtDni.getText()));
           pod.setNombre_propietario(frmP.jtNombre.getText());
           pod.setApellido_propietario(frmP.jtApellido.getText());
@@ -55,10 +58,14 @@ public class CtrPropietario implements ActionListener{
           } else{ JOptionPane.showMessageDialog(null, "Error al Guardar");
               limpiar();
       }
+      }
+          catch(Exception num){JOptionPane.showMessageDialog(null, "Dato invalido");
       
   }
+      }
       
       if (e.getSource()==frmP.btnModificar){
+          try{
           
           pod.setDni_propietario(Integer.parseInt(frmP.jtDni.getText()));
           pod.setNombre_propietario(frmP.jtNombre.getText());
@@ -74,7 +81,10 @@ public class CtrPropietario implements ActionListener{
               
           } else{ JOptionPane.showMessageDialog(null, "Error al Modificar");
               limpiar();
-      }
+      }}
+          catch(Exception num){JOptionPane.showMessageDialog(null, "Dato invalido");
+      
+  }
       
       }
       

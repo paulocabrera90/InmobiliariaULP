@@ -42,6 +42,7 @@ public class fromMenu extends javax.swing.JFrame {
         jButtonModificar = new javax.swing.JButton();
         jButtoNuevo = new javax.swing.JButton();
         jButtonEliminar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,6 +108,8 @@ public class fromMenu extends javax.swing.JFrame {
 
         jButtonEliminar.setText("Eliminar");
 
+        jButton1.setText("Modificar");
+
         javax.swing.GroupLayout jPanelPropietarioLayout = new javax.swing.GroupLayout(jPanelPropietario);
         jPanelPropietario.setLayout(jPanelPropietarioLayout);
         jPanelPropietarioLayout.setHorizontalGroup(
@@ -114,7 +117,9 @@ public class fromMenu extends javax.swing.JFrame {
             .addGroup(jPanelPropietarioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtoNuevo)
-                .addGap(95, 95, 95)
+                .addGap(57, 57, 57)
+                .addComponent(jButton1)
+                .addGap(50, 50, 50)
                 .addComponent(jButtonEliminar)
                 .addGap(22, 22, 22))
             .addGroup(jPanelPropietarioLayout.createSequentialGroup()
@@ -134,7 +139,8 @@ public class fromMenu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanelPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtoNuevo)
-                    .addComponent(jButtonEliminar))
+                    .addComponent(jButtonEliminar)
+                    .addComponent(jButton1))
                 .addGap(0, 14, Short.MAX_VALUE))
             .addGroup(jPanelPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelPropietarioLayout.createSequentialGroup()
@@ -232,6 +238,7 @@ public class fromMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jButtoNuevo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JPanel jPanelContrato;
