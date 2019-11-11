@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package Vista.Propietario;
 
 /**
  *
@@ -16,6 +16,10 @@ public class frmPropietario extends javax.swing.JFrame {
      */
     public frmPropietario() {
         initComponents();
+        
+        btnModificar.setVisible(false);
+        btnBorrar.setVisible(false);
+        btnBuscar.setVisible(false);
     }
 
     /**
@@ -31,7 +35,6 @@ public class frmPropietario extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        btnBorrar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -43,6 +46,7 @@ public class frmPropietario extends javax.swing.JFrame {
         jtApellido = new javax.swing.JTextField();
         jtDomicilio = new javax.swing.JTextField();
         jtTelefono = new javax.swing.JTextField();
+        btnBorrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(241, 241, 241));
@@ -70,13 +74,6 @@ public class frmPropietario extends javax.swing.JFrame {
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
-            }
-        });
-
-        btnBorrar.setText("Borrar");
-        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBorrarActionPerformed(evt);
             }
         });
 
@@ -112,6 +109,8 @@ public class frmPropietario extends javax.swing.JFrame {
 
         jtTelefono.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        btnBorrar.setText("Borrar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,9 +140,9 @@ public class frmPropietario extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnModificar)
-                                .addGap(48, 48, 48)
+                                .addGap(43, 43, 43)
                                 .addComponent(btnBorrar)
-                                .addGap(51, 51, 51)
+                                .addGap(46, 46, 46)
                                 .addComponent(btnLimpiar))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,7 +161,7 @@ public class frmPropietario extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addGap(281, 281, 281)
                                 .addComponent(btnBuscar)))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,17 +193,13 @@ public class frmPropietario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnModificar)
-                    .addComponent(btnBorrar)
-                    .addComponent(btnLimpiar))
+                    .addComponent(btnLimpiar)
+                    .addComponent(btnBorrar))
                 .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         // TODO add your handling code here:

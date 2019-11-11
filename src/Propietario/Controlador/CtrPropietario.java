@@ -3,7 +3,7 @@ package Propietario.Controlador;
 
 import Propietario.Modelo.ConsultasPropietario;
 import Propietario.Modelo.Propietario;
-import Vista.frmPropietario;
+import Vista.Propietario.frmPropietario;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -47,7 +47,7 @@ public class CtrPropietario implements ActionListener{
           pod.setNombre_propietario(frmP.jtNombre.getText());
           pod.setApellido_propietario(frmP.jtApellido.getText());
           pod.setDomicilio_propietario(frmP.jtDomicilio.getText());
-          pod.setTelefono_propietario(Integer.parseInt(frmP.jtTelefono.getText()));
+          pod.setTelefono_propietario(Long.parseLong(frmP.jtTelefono.getText()));
           
           if (podP.Guardar(pod)){
               
@@ -71,7 +71,7 @@ public class CtrPropietario implements ActionListener{
           pod.setNombre_propietario(frmP.jtNombre.getText());
           pod.setApellido_propietario(frmP.jtApellido.getText());
           pod.setDomicilio_propietario(frmP.jtDomicilio.getText());
-          pod.setTelefono_propietario(Integer.parseInt(frmP.jtTelefono.getText()));
+          pod.setTelefono_propietario(Long.parseLong(frmP.jtTelefono.getText()));
           
           if (podP.Modificar(pod)){
               
@@ -129,6 +129,8 @@ public class CtrPropietario implements ActionListener{
        }
     
 }
+  
+       
   
  
   public void limpiar(){

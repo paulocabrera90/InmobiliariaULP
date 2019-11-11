@@ -39,10 +39,8 @@ public class fromMenu extends javax.swing.JFrame {
         jPanelInquilino = new javax.swing.JPanel();
         jPanelPropietario = new javax.swing.JPanel();
         panelPropietarioList1 = new Vista.Propietario.panelPropietarioList();
-        jButtonModificar = new javax.swing.JButton();
         jButtoNuevo = new javax.swing.JButton();
         jButtonEliminar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,8 +90,6 @@ public class fromMenu extends javax.swing.JFrame {
 
         jTabbedPaneMenu.addTab("Inquilino", jPanelInquilino);
 
-        jButtonModificar.setText("Modificar");
-
         jButtoNuevo.setLabel("Nuevo");
         jButtoNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -107,8 +103,11 @@ public class fromMenu extends javax.swing.JFrame {
         });
 
         jButtonEliminar.setText("Eliminar");
-
-        jButton1.setText("Modificar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelPropietarioLayout = new javax.swing.GroupLayout(jPanelPropietario);
         jPanelPropietario.setLayout(jPanelPropietarioLayout);
@@ -117,20 +116,13 @@ public class fromMenu extends javax.swing.JFrame {
             .addGroup(jPanelPropietarioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtoNuevo)
-                .addGap(57, 57, 57)
-                .addComponent(jButton1)
-                .addGap(50, 50, 50)
+                .addGap(68, 68, 68)
                 .addComponent(jButtonEliminar)
-                .addGap(22, 22, 22))
+                .addGap(91, 91, 91))
             .addGroup(jPanelPropietarioLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(panelPropietarioList1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
-            .addGroup(jPanelPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelPropietarioLayout.createSequentialGroup()
-                    .addGap(352, 352, 352)
-                    .addComponent(jButtonModificar)
-                    .addContainerGap(358, Short.MAX_VALUE)))
         );
         jPanelPropietarioLayout.setVerticalGroup(
             jPanelPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,14 +131,8 @@ public class fromMenu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanelPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtoNuevo)
-                    .addComponent(jButtonEliminar)
-                    .addComponent(jButton1))
+                    .addComponent(jButtonEliminar))
                 .addGap(0, 14, Short.MAX_VALUE))
-            .addGroup(jPanelPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelPropietarioLayout.createSequentialGroup()
-                    .addGap(172, 172, 172)
-                    .addComponent(jButtonModificar)
-                    .addContainerGap(172, Short.MAX_VALUE)))
         );
 
         jTabbedPaneMenu.addTab("Propietario", jPanelPropietario);
@@ -179,7 +165,7 @@ public class fromMenu extends javax.swing.JFrame {
         //---- PROPIETARIO
         Propietario pod = new Propietario();
         ConsultasPropietario podP = new ConsultasPropietario ();
-        Vista.frmPropietario frmP = new Vista.frmPropietario();
+        Vista.Propietario.frmPropietario frmP = new Vista.Propietario.frmPropietario();
 
         CtrPropietario ctrl = new CtrPropietario(pod,podP,frmP);
         ctrl.iniciar();
@@ -187,11 +173,16 @@ public class fromMenu extends javax.swing.JFrame {
         //-----------------
 
         frmP.setVisible(true);
+        
     }//GEN-LAST:event_jButtoNuevoMouseClicked
 
     private void jButtoNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoNuevoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtoNuevoActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,9 +229,7 @@ public class fromMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jButtoNuevo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonEliminar;
-    private javax.swing.JButton jButtonModificar;
     private javax.swing.JPanel jPanelContrato;
     private javax.swing.JPanel jPanelInmueble;
     private javax.swing.JPanel jPanelInquilino;

@@ -29,7 +29,7 @@ public boolean Guardar(Propietario propi){
             ps.setString(2, propi.getNombre_propietario());
             ps.setString(3, propi.getApellido_propietario());
             ps.setString(4, propi.getDomicilio_propietario());
-            ps.setInt(5,propi.getTelefono_propietario());
+            ps.setLong(5,propi.getTelefono_propietario());
            
             ps.execute();
             return true;
@@ -64,7 +64,7 @@ public boolean Modificar(Propietario propi){
             ps.setString(1, propi.getNombre_propietario());
             ps.setString(2, propi.getApellido_propietario());
             ps.setString(3, propi.getDomicilio_propietario());
-            ps.setInt(4,propi.getTelefono_propietario());
+            ps.setLong(4,propi.getTelefono_propietario());
             ps.setInt(5,propi.getDni_propietario());
             ps.execute();
             return true;
