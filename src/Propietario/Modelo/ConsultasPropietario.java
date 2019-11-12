@@ -29,7 +29,7 @@ public boolean Guardar(Propietario propi){
             ps.setString(2, propi.getNombre_propietario());
             ps.setString(3, propi.getApellido_propietario());
             ps.setString(4, propi.getDomicilio_propietario());
-            ps.setLong(5,propi.getTelefono_propietario());
+            ps.setString(5,propi.getTelefono_propietario());
            
             ps.execute();
             return true;
@@ -64,7 +64,7 @@ public boolean Modificar(Propietario propi){
             ps.setString(1, propi.getNombre_propietario());
             ps.setString(2, propi.getApellido_propietario());
             ps.setString(3, propi.getDomicilio_propietario());
-            ps.setLong(4,propi.getTelefono_propietario());
+            ps.setString(4,propi.getTelefono_propietario());
             ps.setInt(5,propi.getDni_propietario());
             ps.execute();
             return true;
@@ -137,7 +137,7 @@ public boolean Buscar(Propietario propi){
                 propi.setNombre_propietario(rs.getString("nombre_propietario"));
                 propi.setApellido_propietario(rs.getString("apellido_propietario"));
                 propi.setDomicilio_propietario(rs.getString("domicilio_propietario"));
-                propi.setTelefono_propietario(rs.getInt("telefono_propietario"));
+                propi.setTelefono_propietario(rs.getString("telefono_propietario"));
                 return true;
                 
             }

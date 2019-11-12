@@ -47,7 +47,7 @@ public class CtrPropietario implements ActionListener{
           pod.setNombre_propietario(frmP.jtNombre.getText());
           pod.setApellido_propietario(frmP.jtApellido.getText());
           pod.setDomicilio_propietario(frmP.jtDomicilio.getText());
-          pod.setTelefono_propietario(Long.parseLong(frmP.jtTelefono.getText()));
+          pod.setTelefono_propietario(frmP.jtTelefono.getText());
           
           if (podP.Guardar(pod)){
               
@@ -71,7 +71,7 @@ public class CtrPropietario implements ActionListener{
           pod.setNombre_propietario(frmP.jtNombre.getText());
           pod.setApellido_propietario(frmP.jtApellido.getText());
           pod.setDomicilio_propietario(frmP.jtDomicilio.getText());
-          pod.setTelefono_propietario(Long.parseLong(frmP.jtTelefono.getText()));
+          pod.setTelefono_propietario(frmP.jtTelefono.getText());
           
           if (podP.Modificar(pod)){
               
