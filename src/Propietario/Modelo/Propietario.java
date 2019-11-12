@@ -9,7 +9,7 @@ public class Propietario {
     private String nombre_propietario;
     private String apellido_propietario;
     private String domicilio_propietario;
-    private long telefono_propietario;
+    private String telefono_propietario;
 
     public int getDni_propietario() {
         return dni_propietario;
@@ -43,11 +43,11 @@ public class Propietario {
         this.domicilio_propietario = domicilio_propietario;
     }
 
-    public long getTelefono_propietario() {
+    public String getTelefono_propietario() {
         return telefono_propietario;
     }
 
-    public void setTelefono_propietario(int telefono_propietario) {
+    public void setTelefono_propietario(String telefono_propietario) {
         this.telefono_propietario = telefono_propietario;
     }
     

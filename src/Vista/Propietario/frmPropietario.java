@@ -5,6 +5,8 @@
  */
 package Vista.Propietario;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kevin
@@ -17,9 +19,7 @@ public class frmPropietario extends javax.swing.JFrame {
     public frmPropietario() {
         initComponents();
         
-        btnModificar.setVisible(false);
-        btnBorrar.setVisible(false);
-        btnBuscar.setVisible(false);
+      
     }
 
     /**
@@ -100,14 +100,34 @@ public class frmPropietario extends javax.swing.JFrame {
                 jtDniActionPerformed(evt);
             }
         });
+        jtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDniKeyTyped(evt);
+            }
+        });
 
         jtNombre.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtNombreKeyTyped(evt);
+            }
+        });
 
         jtApellido.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtApellidoKeyTyped(evt);
+            }
+        });
 
         jtDomicilio.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jtTelefono.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtTelefonoKeyTyped(evt);
+            }
+        });
 
         btnBorrar.setText("Borrar");
 
@@ -221,6 +241,47 @@ public class frmPropietario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtDniActionPerformed
 
+    private void jtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTelefonoKeyTyped
+       char validar= evt.getKeyChar();
+       if (Character.isLetter(validar)){
+           getToolkit().beep();
+           evt.consume();
+           JOptionPane.showMessageDialog(rootPane, "Ingresar Solo Numeros");
+       }
+    }//GEN-LAST:event_jtTelefonoKeyTyped
+
+    private void jtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniKeyTyped
+        char validar= evt.getKeyChar();
+       if (Character.isLetter(validar)){
+           getToolkit().beep();
+           evt.consume();
+           JOptionPane.showMessageDialog(rootPane, "Ingresar solo DNI");
+    }//GEN-LAST:event_jtDniKeyTyped
+    }
+    private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
+       char validar =evt.getKeyChar();
+       
+       if(Character.isDigit(validar)){
+           getToolkit().beep();
+           
+           evt.consume();
+           
+           JOptionPane.showMessageDialog(rootPane, "Ingresar Nombre");
+       }
+    }//GEN-LAST:event_jtNombreKeyTyped
+
+    private void jtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyTyped
+       char validar =evt.getKeyChar();
+       
+       if(Character.isDigit(validar)){
+           getToolkit().beep();
+           
+           evt.consume();
+           
+           JOptionPane.showMessageDialog(rootPane, "Ingresar Apellido");
+       }
+    }//GEN-LAST:event_jtApellidoKeyTyped
+    
     /**
      * @param args the command line arguments
      */
