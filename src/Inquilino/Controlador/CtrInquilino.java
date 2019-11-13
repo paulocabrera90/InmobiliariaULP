@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Locale;
 import javax.swing.JOptionPane;
-import jdk.internal.org.objectweb.asm.commons.StaticInitMerger;
+//import jdk.internal.org.objectweb.asm.commons.StaticInitMerger;
 import Vista.*;
 
 /**
