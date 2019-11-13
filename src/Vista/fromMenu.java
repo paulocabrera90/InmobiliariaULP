@@ -5,10 +5,16 @@
  */
 package Vista;
 
+import Inmueble.Modelo.ConsultasInmueble;
+import Inmueble.Controlador.CrlInmueble;
+import Vista.Inmueble.FormInmueble;
+import Inmueble.Modelo.Inmueble;
 import Propietario.Controlador.CtrPropietario;
 import Propietario.Modelo.ConsultasPropietario;
 import Propietario.Modelo.Propietario;
 import Vista.Propietario.panelPropietarioList;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,11 +22,45 @@ import Vista.Propietario.panelPropietarioList;
  */
 public class fromMenu extends javax.swing.JFrame {
 
-    /**
-     * Creates new form fromMenu
-     */
+   private Propietario propietario=new Propietario();
+    private Inmueble inmueble=new Inmueble();
+    private static ConsultasPropietario consultasp= new ConsultasPropietario();
+    private static ConsultasInmueble consultasi=new ConsultasInmueble();
+    private static ArrayList<Inmueble> inmuebles=new ArrayList<Inmueble>();
+    private static DefaultTableModel modeloinmuebles;
+    
     public fromMenu() {
         initComponents();
+        modeloinmuebles=new DefaultTableModel();
+        armarCabeceraInmuebles();
+        cargarInmuebles();
+        
+        
+        
+    }
+    public void armarCabeceraInmuebles(){
+        ArrayList<Object> columnasi=new ArrayList<Object>();
+        columnasi.add("Características");
+        columnasi.add("Propietario");
+        columnasi.add("Superficie");
+        columnasi.add("Precio mensual");
+        for(Object col:columnasi)
+            modeloinmuebles.addColumn(col);
+        tabInmuebles.setModel(modeloinmuebles);
+    }
+    public static void cargarInmuebles(){
+        inmuebles.clear();
+        consultasi.obtenerInmuebles(inmuebles);
+        borrarInmuebles();
+        for(Inmueble i:inmuebles){
+            modeloinmuebles.addRow(new Object[] {i.getTipo_inmueble(),i.getPropietario().getApellido_propietario(),i.getSuperficie(),i.getPrecio_base()});
+        }
+        
+    }
+    public static void borrarInmuebles(){
+        int c=modeloinmuebles.getRowCount()-1;
+        for(int i=c;i>=0;i--)
+            modeloinmuebles.removeRow(i);
     }
 
     
@@ -36,9 +76,11 @@ public class fromMenu extends javax.swing.JFrame {
         jTabbedPaneMenu = new javax.swing.JTabbedPane();
         jPanelContrato = new javax.swing.JPanel();
         jPanelInmueble = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabInmuebles = new javax.swing.JTable();
+        btnNuevoInmueble = new javax.swing.JButton();
         jPanelInquilino = new javax.swing.JPanel();
         jPanelPropietario = new javax.swing.JPanel();
-        panelPropietarioList1 = new Vista.Propietario.panelPropietarioList();
         jButtoNuevo = new javax.swing.JButton();
         jButtonEliminar = new javax.swing.JButton();
 
@@ -59,20 +101,50 @@ public class fromMenu extends javax.swing.JFrame {
         );
         jPanelContratoLayout.setVerticalGroup(
             jPanelContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 367, Short.MAX_VALUE)
+            .addGap(0, 392, Short.MAX_VALUE)
         );
 
         jTabbedPaneMenu.addTab("Contrato", jPanelContrato);
+
+        tabInmuebles.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabInmuebles);
+
+        btnNuevoInmueble.setText("Nuevo");
+        btnNuevoInmueble.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoInmuebleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelInmuebleLayout = new javax.swing.GroupLayout(jPanelInmueble);
         jPanelInmueble.setLayout(jPanelInmuebleLayout);
         jPanelInmuebleLayout.setHorizontalGroup(
             jPanelInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 785, Short.MAX_VALUE)
+            .addGroup(jPanelInmuebleLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(btnNuevoInmueble)
+                .addContainerGap(210, Short.MAX_VALUE))
         );
         jPanelInmuebleLayout.setVerticalGroup(
             jPanelInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 367, Short.MAX_VALUE)
+            .addGroup(jPanelInmuebleLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addGroup(jPanelInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnNuevoInmueble)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         jTabbedPaneMenu.addTab("Inmueble", jPanelInmueble);
@@ -85,7 +157,7 @@ public class fromMenu extends javax.swing.JFrame {
         );
         jPanelInquilinoLayout.setVerticalGroup(
             jPanelInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 367, Short.MAX_VALUE)
+            .addGap(0, 392, Short.MAX_VALUE)
         );
 
         jTabbedPaneMenu.addTab("Inquilino", jPanelInquilino);
@@ -101,6 +173,7 @@ public class fromMenu extends javax.swing.JFrame {
                 jButtoNuevoActionPerformed(evt);
             }
         });
+        jPanelPropietario.add(jButtoNuevo);
 
         jButtonEliminar.setText("Eliminar");
         jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -108,32 +181,7 @@ public class fromMenu extends javax.swing.JFrame {
                 jButtonEliminarActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanelPropietarioLayout = new javax.swing.GroupLayout(jPanelPropietario);
-        jPanelPropietario.setLayout(jPanelPropietarioLayout);
-        jPanelPropietarioLayout.setHorizontalGroup(
-            jPanelPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPropietarioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtoNuevo)
-                .addGap(68, 68, 68)
-                .addComponent(jButtonEliminar)
-                .addGap(91, 91, 91))
-            .addGroup(jPanelPropietarioLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(panelPropietarioList1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-        jPanelPropietarioLayout.setVerticalGroup(
-            jPanelPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPropietarioLayout.createSequentialGroup()
-                .addComponent(panelPropietarioList1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanelPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtoNuevo)
-                    .addComponent(jButtonEliminar))
-                .addGap(0, 14, Short.MAX_VALUE))
-        );
+        jPanelPropietario.add(jButtonEliminar);
 
         jTabbedPaneMenu.addTab("Propietario", jPanelPropietario);
 
@@ -184,6 +232,16 @@ public class fromMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
+    private void btnNuevoInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoInmuebleActionPerformed
+  
+        Inmueble inmueble= new Inmueble();
+        FormInmueble formularioinmueble= new FormInmueble();
+        ConsultasInmueble consultasinmueble=new ConsultasInmueble();
+        CrlInmueble crlinmueble=new CrlInmueble(inmueble,consultasinmueble,formularioinmueble);
+        crlinmueble.iniciar();
+        formularioinmueble.setVisible(true);
+    }//GEN-LAST:event_btnNuevoInmuebleActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -228,13 +286,15 @@ public class fromMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnNuevoInmueble;
     public javax.swing.JButton jButtoNuevo;
     private javax.swing.JButton jButtonEliminar;
     private javax.swing.JPanel jPanelContrato;
     private javax.swing.JPanel jPanelInmueble;
     private javax.swing.JPanel jPanelInquilino;
     private javax.swing.JPanel jPanelPropietario;
+    private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTabbedPane jTabbedPaneMenu;
-    private Vista.Propietario.panelPropietarioList panelPropietarioList1;
+    public javax.swing.JTable tabInmuebles;
     // End of variables declaration//GEN-END:variables
 }
