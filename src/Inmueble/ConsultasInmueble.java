@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,16 +24,15 @@ public class ConsultasInmueble extends Conexion{
             PreparedStatement ps=null;
             Connection con = conexion();
         
-             String sql = "INSERT INTO propietario (tipo_inmueble,dni_propietario,direccion_inmueble,altura_inmueblem,superficie,zona,precio_base) VALUES (?,?,?,?,?,?,?,);";
+             String sql = "INSERT INTO inmueble (id_tipo_inmueble,dni_propietario,direccion_inmueble,superficie,precio_base,estado_inmueble) VALUES (?,?,?,?,?,?);";
             try {
             ps=con.prepareStatement(sql);
-            ps.setString(1,inmueble.getTipo_inmueble());
+            ps.setInt(1,inmueble.getTipo_inmueble().getId_tipo_inmueble());
             ps.setInt(2,inmueble.getPropietario().getDni_propietario());
             ps.setString(3,inmueble.getDireccion_inmueble());
-            ps.setInt(4,inmueble.getAltura_inmueble());
-            ps.setDouble(5,inmueble.getSuperficie());
-            ps.setString(6,inmueble.getZona());
-            ps.setDouble(7,inmueble.getPrecio_base());
+            ps.setDouble(4,inmueble.getSuperficie());
+            ps.setDouble(5,inmueble.getPrecio_base());
+            ps.setString(6,inmueble.getEstado_inmueble());
 
            
             ps.execute();
@@ -60,17 +60,16 @@ public boolean Modificar(Inmueble inmueble){
         PreparedStatement ps=null;
         Connection con = conexion();
         
-        String sql = "UPDATE propietario SET tipo_inmueble=?,dni_propietario=?,direccion_inmueble=?,altura_inmueble=?,superficie=?,zona=?,precio_base=?  WHERE id_inmueble? "; 
+        String sql = "UPDATE inmueble SET tipo_inmueble=?,dni_propietario=?,direccion_inmueble=?,superficie=?,precio_base=?  WHERE id_inmueble? "; 
         
         try {
             ps=con.prepareStatement(sql);
-            ps.setString(1,inmueble.getTipo_inmueble());
+            ps.setInt(1,inmueble.getTipo_inmueble().getId_tipo_inmueble());
             ps.setInt(2,inmueble.getPropietario().getDni_propietario());
             ps.setString(3,inmueble.getDireccion_inmueble());
-            ps.setInt(4,inmueble.getAltura_inmueble());
-            ps.setDouble(5,inmueble.getSuperficie());
-            ps.setString(6,inmueble.getZona());
-            ps.setDouble(7,inmueble.getPrecio_base());
+            ps.setDouble(4,inmueble.getSuperficie());
+            ps.setDouble(6,inmueble.getPrecio_base());
+            ps.setString(7,inmueble.getEstado_inmueble());
 
            
             ps.execute();
@@ -98,7 +97,7 @@ public boolean Borrar(Inmueble inmueble){
         PreparedStatement ps=null;
         Connection con = conexion();
         
-        String sql = "DELETE FROM  propietario WHERE id_inmueble=?"; 
+        String sql = "DELETE FROM  inmueble WHERE id_inmueble=?"; 
         
         try {
             ps=con.prepareStatement(sql);
@@ -132,25 +131,30 @@ public boolean Buscar(Inmueble inmueble){
         ResultSet rs= null;
         Connection con = conexion();
         
-        String sql = "SELECT * FROM propietario id_inmueble=?"; 
+        String sql = "SELECT * FROM inmueble WHERE id_inmueble=?"; 
         
         try {
             Propietario propietario=new Propietario();
+            TipoInmueble tipoinmueble=new TipoInmueble();
             ConsultasPropietario consultapropietario=new ConsultasPropietario();
+            ConsultasTipoInmueble consultastipoinmueble=new ConsultasTipoInmueble();
             ps = con.prepareStatement(sql);
             ps.setInt(1,inmueble.getId_inmueble());
             rs = ps.executeQuery();
-            propietario.setDni_propietario(rs.getInt("dni_propietario"));
-            consultapropietario.Buscar(propietario);
-     
+            
+
+            
             if(rs.next()){
-                inmueble.setTipo_inmueble(rs.getString("tipo_inmueble"));
+                propietario.setDni_propietario(rs.getInt("dni_propietario"));
+                tipoinmueble.setId_tipo_inmueble(rs.getInt("id_tipo_inmueble"));
+                consultapropietario.Buscar(propietario);
+                consultastipoinmueble.Buscar(tipoinmueble);
+                inmueble.setTipo_inmueble(tipoinmueble);
                 inmueble.setPropietario(propietario);
                 inmueble.setDireccion_inmueble(rs.getString("direccion_inmueble"));
-                inmueble.setAltura_inmueble(Integer.parseInt(rs.getString("altura_inmueble")));
                 inmueble.setSuperficie(Double.parseDouble(rs.getString("superficie")));
-                inmueble.setZona(rs.getString("zona"));
                 inmueble.setPrecio_base(Double.parseDouble(rs.getString("precio_base")));
+                inmueble.setEstado_inmueble(rs.getString("estado_inmueble"));
                 
                 return true;
                 
@@ -169,6 +173,52 @@ public boolean Buscar(Inmueble inmueble){
                 System.err.println(e);
             }
         }
+        
+    }
+ public boolean obtenerInmuebles(ArrayList<Inmueble> inmuebles){
+        
+        PreparedStatement ps = null;
+        ResultSet rs= null;
+        Connection con = conexion();
+        
+        String sql = "SELECT * FROM inmueble"; 
+        
+        try {
+            Propietario propietario=new Propietario();
+            TipoInmueble tipoinmueble=new TipoInmueble();
+            ConsultasPropietario consultapropietario=new ConsultasPropietario();
+            ConsultasTipoInmueble consultastipoinmueble=new ConsultasTipoInmueble();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Inmueble inmueble=new Inmueble();
+                propietario.setDni_propietario(rs.getInt("dni_propietario"));
+                tipoinmueble.setId_tipo_inmueble(rs.getInt("id_tipo_inmueble"));
+                consultapropietario.Buscar(propietario);
+                consultastipoinmueble.Buscar(tipoinmueble);
+                inmueble.setTipo_inmueble(tipoinmueble);
+                inmueble.setPropietario(propietario);
+                inmueble.setDireccion_inmueble(rs.getString("direccion_inmueble"));
+                inmueble.setSuperficie(Double.parseDouble(rs.getString("superficie")));
+                inmueble.setPrecio_base(Double.parseDouble(rs.getString("precio_base")));
+                inmueble.setEstado_inmueble(rs.getString("estado_inmueble")); 
+                inmuebles.add(inmueble);
+    
+            }
+            return true; 
+        }
+        catch(SQLException e){
+        System.err.println(e);
+        return false;
+        }/*finally{
+            try {
+                con.close();
+                
+            }
+            catch(SQLException e){
+                System.err.println(e);
+            }
+        }*/
         
     }
     
