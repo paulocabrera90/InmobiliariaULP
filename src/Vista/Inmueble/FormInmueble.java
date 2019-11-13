@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Inmueble;
+package Vista.Inmueble;
+
+import Inmueble.Modelo.TipoInmueble;
 
 /**
  *
@@ -36,7 +38,7 @@ public class FormInmueble extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        cboTipo_inm = new javax.swing.JComboBox<>();
+        cboTipo_inm = new javax.swing.JComboBox<TipoInmueble>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtDniPropietario = new javax.swing.JTextField();

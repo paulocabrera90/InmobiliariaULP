@@ -5,10 +5,10 @@
  */
 package Vista;
 
-import Inmueble.ConsultasInmueble;
-import Inmueble.CrlInmueble;
-import Inmueble.FormInmueble;
-import Inmueble.Inmueble;
+import Inmueble.Modelo.ConsultasInmueble;
+import Inmueble.Controlador.CrlInmueble;
+import Vista.Inmueble.FormInmueble;
+import Inmueble.Modelo.Inmueble;
 import Propietario.Controlador.CtrPropietario;
 import Propietario.Modelo.ConsultasPropietario;
 import Propietario.Modelo.Propietario;

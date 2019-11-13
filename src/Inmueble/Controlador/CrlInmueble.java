@@ -3,8 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Inmueble;
+package Inmueble.Controlador;
 
+import Inmueble.Modelo.ConsultasInmueble;
+import Inmueble.Modelo.ConsultasTipoInmueble;
+import Vista.Inmueble.FormInmueble;
+import Inmueble.Modelo.Inmueble;
+import Inmueble.Modelo.TipoInmueble;
 import Propietario.Modelo.ConsultasPropietario;
 import Propietario.Modelo.Propietario;
 import Vista.fromMenu;

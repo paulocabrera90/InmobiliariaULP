@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Inmueble;
+package Inmueble.Modelo;
 
 import Propietario.Modelo.Conexion;
 import java.sql.Connection;

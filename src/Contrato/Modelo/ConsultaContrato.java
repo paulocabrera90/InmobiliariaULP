@@ -24,11 +24,11 @@ public class ConsultaContrato {
         
         try {
             ps=con.prepareStatement(sql);
-            ps.setInt(1,propi.getDni_propietario());
-            ps.setString(2, propi.getNombre_propietario());
-            ps.setString(3, propi.getApellido_propietario());
-            ps.setString(4, propi.getDomicilio_propietario());
-            ps.setInt(5,propi.getTelefono_propietario());
+//            ps.setInt(1,propi.getDni_propietario());
+//            ps.setString(2, propi.getNombre_propietario());
+//            ps.setString(3, propi.getApellido_propietario());
+//            ps.setString(4, propi.getDomicilio_propietario());
+//            ps.setInt(5,propi.getTelefono_propietario());
            
             ps.execute();
             return true;
