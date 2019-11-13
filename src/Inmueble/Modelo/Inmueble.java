@@ -12,6 +12,7 @@ import Propietario.Modelo.Propietario;
  * @author garba
  */
 public class Inmueble {
+    private String HOLA;
     private int id_inmueble;
     private TipoInmueble tipo_inmueble;
     private Propietario propietario;
