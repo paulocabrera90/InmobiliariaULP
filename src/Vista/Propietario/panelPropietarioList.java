@@ -5,7 +5,10 @@
  */
 package Vista.Propietario;
 
+import Propietario.Controlador.CtrPropietario;
 import Propietario.Modelo.Conexion;
+import Propietario.Modelo.ConsultasPropietario;
+import Propietario.Modelo.Propietario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -85,6 +88,9 @@ public class panelPropietarioList extends javax.swing.JPanel {
         jTextField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
+        btnNuevoPropietario = new javax.swing.JButton();
+        btnAbrirPropietario = new javax.swing.JButton();
+        btnBorrarPropietario = new javax.swing.JButton();
 
         jTablePropietario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -189,14 +195,39 @@ public class panelPropietarioList extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        btnNuevoPropietario.setText("Nuevo");
+        btnNuevoPropietario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNuevoPropietarioMouseClicked(evt);
+            }
+        });
+        btnNuevoPropietario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoPropietarioActionPerformed(evt);
+            }
+        });
+
+        btnAbrirPropietario.setText("Abrir");
+
+        btnBorrarPropietario.setText("Borrar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(btnNuevoPropietario)
+                        .addGap(50, 50, 50)
+                        .addComponent(btnAbrirPropietario)
+                        .addGap(46, 46, 46)
+                        .addComponent(btnBorrarPropietario)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -205,10 +236,16 @@ public class panelPropietarioList extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 139, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnNuevoPropietario)
+                            .addComponent(btnAbrirPropietario)
+                            .addComponent(btnBorrarPropietario))
+                        .addGap(22, 22, 22))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -220,8 +257,29 @@ public class panelPropietarioList extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
+    private void btnNuevoPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPropietarioActionPerformed
+        
+    }//GEN-LAST:event_btnNuevoPropietarioActionPerformed
+
+    private void btnNuevoPropietarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoPropietarioMouseClicked
+         Propietario pod = new Propietario();
+        ConsultasPropietario podP = new ConsultasPropietario ();
+        Vista.Propietario.frmPropietario frmP = new Vista.Propietario.frmPropietario();
+
+        CtrPropietario ctrl = new CtrPropietario(pod,podP,frmP);
+        ctrl.iniciar();
+        this.setEnabled(false);
+        //-----------------
+
+        frmP.setVisible(true);
+        
+    }//GEN-LAST:event_btnNuevoPropietarioMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbrirPropietario;
+    private javax.swing.JButton btnBorrarPropietario;
+    private javax.swing.JButton btnNuevoPropietario;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
