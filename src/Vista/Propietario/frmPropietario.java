@@ -246,7 +246,7 @@ public class frmPropietario extends javax.swing.JFrame {
        if (Character.isLetter(validar)){
            getToolkit().beep();
            evt.consume();
-           JOptionPane.showMessageDialog(rootPane, "Ingresar Solo Numeros");
+           
        }
     }//GEN-LAST:event_jtTelefonoKeyTyped
 
@@ -255,7 +255,7 @@ public class frmPropietario extends javax.swing.JFrame {
        if (Character.isLetter(validar)){
            getToolkit().beep();
            evt.consume();
-           JOptionPane.showMessageDialog(rootPane, "Ingresar solo DNI");
+           
     }//GEN-LAST:event_jtDniKeyTyped
     }
     private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
@@ -266,7 +266,7 @@ public class frmPropietario extends javax.swing.JFrame {
            
            evt.consume();
            
-           JOptionPane.showMessageDialog(rootPane, "Ingresar Nombre");
+           
        }
     }//GEN-LAST:event_jtNombreKeyTyped
 
@@ -278,7 +278,7 @@ public class frmPropietario extends javax.swing.JFrame {
            
            evt.consume();
            
-           JOptionPane.showMessageDialog(rootPane, "Ingresar Apellido");
+           
        }
     }//GEN-LAST:event_jtApellidoKeyTyped
     
