@@ -33,7 +33,7 @@ public class CtrPropietario implements ActionListener{
   public void iniciar(){
       frmP.setTitle("Propietarios");
       frmP.setLocationRelativeTo(null);
-      frmP.jtDni.setVisible(true);
+      frmP.setVisible(true);
   }
  
     @Override

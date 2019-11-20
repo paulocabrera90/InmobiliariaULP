@@ -14,12 +14,12 @@ public class Inquilino {
     private int dni_inquilino;
     private String nombre_inquilino;
     private String apellido_inquilino;
-    private int cuit_inquilino;
+    private String cuit_inquilino;
     private String lugar_trabajo_inquilino;
     private String nom_garante_inquilino;
     private int dni_garante_inquilino;
 
-    public Inquilino(int dni_inquilino, String nombre_inquilino, String apellido_inquilino, int cuit_inquilino, String lugar_trabajo_inquilino, String nom_garante_inquilino, int dni_garante_inquilino) {
+    public Inquilino(int dni_inquilino, String nombre_inquilino, String apellido_inquilino, String cuit_inquilino, String lugar_trabajo_inquilino, String nom_garante_inquilino, int dni_garante_inquilino) {
         this.dni_inquilino = dni_inquilino;
         this.nombre_inquilino = nombre_inquilino;
         this.apellido_inquilino = apellido_inquilino;
@@ -43,7 +43,7 @@ public class Inquilino {
         return apellido_inquilino;
     }
 
-    public int getCuit_inquilino() {
+    public String getCuit_inquilino() {
         return cuit_inquilino;
     }
 
@@ -71,7 +71,7 @@ public class Inquilino {
         this.apellido_inquilino = apellido_inquilino;
     }
 
-    public void setCuit_inquilino(int cuit_inquilino) {
+    public void setCuit_inquilino(String cuit_inquilino) {
         this.cuit_inquilino = cuit_inquilino;
     }
 

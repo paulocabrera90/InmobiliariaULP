@@ -9,12 +9,18 @@ import Inmueble.Modelo.ConsultasInmueble;
 import Inmueble.Controlador.CrlInmueble;
 import Vista.Inmueble.FormInmueble;
 import Inmueble.Modelo.Inmueble;
+import Inquilino.Modelo.Inquilino;
 import Propietario.Controlador.CtrPropietario;
 import Propietario.Modelo.ConsultasPropietario;
 import Propietario.Modelo.Propietario;
 import Vista.Propietario.panelPropietarioList;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import Inquilino.Modelo.ConsultasInquilno;
+import Inquilino.Controlador.CtrInquilino;
+import Vista.Inquilino.PanelInquilino;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,9 +34,14 @@ public class fromMenu extends javax.swing.JFrame {
     private static ConsultasInmueble consultasi=new ConsultasInmueble();
     private static ArrayList<Inmueble> inmuebles=new ArrayList<Inmueble>();
     private static DefaultTableModel modeloinmuebles;
+   // private static ConsultasInquilino cdInquilino= new ConsultasInquilino();
     
     public fromMenu() {
         initComponents();
+        this.setTitle("Inmobliaria");
+        this.setExtendedState(this.MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/Inmo2.png")).getImage()) ;// poner imagen a jframe
         modeloinmuebles=new DefaultTableModel();
         armarCabeceraInmuebles();
         cargarInmuebles();
@@ -76,19 +87,19 @@ public class fromMenu extends javax.swing.JFrame {
 
         jTabbedPaneMenu = new javax.swing.JTabbedPane();
         jPanelContrato = new javax.swing.JPanel();
-        jPanelInquilino = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tabInquilino = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jPanelInmueble = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabInmuebles = new javax.swing.JTable();
         btnNuevoInmueble = new javax.swing.JButton();
+        jPanelInquilino = new javax.swing.JPanel();
+        jbtnNuevoInquilino = new javax.swing.JButton();
+        jbtnAbrirInquilino = new javax.swing.JButton();
+        jbtnBorrarInquilino = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        panelInquilino1 = new Vista.Inquilino.PanelInquilino();
         jPanelPropietario = new javax.swing.JPanel();
-        jButtoNuevo = new javax.swing.JButton();
-        panelPropietarioList2 = new Vista.Propietario.panelPropietarioList();
+        panelPropietarioList1 = new Vista.Propietario.panelPropietarioList();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,66 +114,14 @@ public class fromMenu extends javax.swing.JFrame {
         jPanelContrato.setLayout(jPanelContratoLayout);
         jPanelContratoLayout.setHorizontalGroup(
             jPanelContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 785, Short.MAX_VALUE)
+            .addGap(0, 1185, Short.MAX_VALUE)
         );
         jPanelContratoLayout.setVerticalGroup(
             jPanelContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 449, Short.MAX_VALUE)
+            .addGap(0, 544, Short.MAX_VALUE)
         );
 
         jTabbedPaneMenu.addTab("Contrato", jPanelContrato);
-
-        tabInquilino.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(tabInquilino);
-
-        jButton1.setText("jButton1");
-
-        jButton2.setText("jButton2");
-
-        jButton3.setText("jButton3");
-
-        javax.swing.GroupLayout jPanelInquilinoLayout = new javax.swing.GroupLayout(jPanelInquilino);
-        jPanelInquilino.setLayout(jPanelInquilinoLayout);
-        jPanelInquilinoLayout.setHorizontalGroup(
-            jPanelInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelInquilinoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addContainerGap(44, Short.MAX_VALUE))
-        );
-        jPanelInquilinoLayout.setVerticalGroup(
-            jPanelInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelInquilinoLayout.createSequentialGroup()
-                .addGroup(jPanelInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelInquilinoLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelInquilinoLayout.createSequentialGroup()
-                        .addGap(212, 212, 212)
-                        .addGroup(jPanelInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3))))
-                .addContainerGap(205, Short.MAX_VALUE))
-        );
-
-        jTabbedPaneMenu.addTab("Inquilino", jPanelInquilino);
 
         tabInmuebles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -193,7 +152,7 @@ public class fromMenu extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnNuevoInmueble)
-                .addContainerGap(267, Short.MAX_VALUE))
+                .addContainerGap(667, Short.MAX_VALUE))
         );
         jPanelInmuebleLayout.setVerticalGroup(
             jPanelInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,39 +161,116 @@ public class fromMenu extends javax.swing.JFrame {
                 .addGroup(jPanelInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNuevoInmueble))
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addContainerGap(304, Short.MAX_VALUE))
         );
 
         jTabbedPaneMenu.addTab("Inmueble", jPanelInmueble);
 
-        jButtoNuevo.setLabel("Nuevo");
-        jButtoNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtoNuevoMouseClicked(evt);
-            }
-        });
-        jButtoNuevo.addActionListener(new java.awt.event.ActionListener() {
+        jbtnNuevoInquilino.setText("Nuevo");
+        jbtnNuevoInquilino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtoNuevoActionPerformed(evt);
+                jbtnNuevoInquilinoActionPerformed(evt);
             }
         });
-        jPanelPropietario.add(jButtoNuevo);
-        jPanelPropietario.add(panelPropietarioList2);
+
+        jbtnAbrirInquilino.setText("Abrir");
+        jbtnAbrirInquilino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnAbrirInquilinoActionPerformed(evt);
+            }
+        });
+
+        jbtnBorrarInquilino.setText("Borrar");
+        jbtnBorrarInquilino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnBorrarInquilinoActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("Lista inquilinos");
+
+        javax.swing.GroupLayout jPanelInquilinoLayout = new javax.swing.GroupLayout(jPanelInquilino);
+        jPanelInquilino.setLayout(jPanelInquilinoLayout);
+        jPanelInquilinoLayout.setHorizontalGroup(
+            jPanelInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelInquilinoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jbtnNuevoInquilino)
+                .addGap(35, 35, 35)
+                .addComponent(jbtnAbrirInquilino)
+                .addGap(35, 35, 35)
+                .addComponent(jbtnBorrarInquilino)
+                .addGap(129, 129, 129))
+            .addGroup(jPanelInquilinoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelInquilino1, javax.swing.GroupLayout.PREFERRED_SIZE, 1148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelInquilinoLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+        jPanelInquilinoLayout.setVerticalGroup(
+            jPanelInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelInquilinoLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelInquilino1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addGroup(jPanelInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnBorrarInquilino)
+                    .addComponent(jbtnAbrirInquilino)
+                    .addComponent(jbtnNuevoInquilino))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        jTabbedPaneMenu.addTab("Inquilino", jPanelInquilino);
+
+        javax.swing.GroupLayout jPanelPropietarioLayout = new javax.swing.GroupLayout(jPanelPropietario);
+        jPanelPropietario.setLayout(jPanelPropietarioLayout);
+        jPanelPropietarioLayout.setHorizontalGroup(
+            jPanelPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPropietarioLayout.createSequentialGroup()
+                .addComponent(panelPropietarioList1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 421, Short.MAX_VALUE))
+        );
+        jPanelPropietarioLayout.setVerticalGroup(
+            jPanelPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPropietarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelPropietarioList1, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(110, Short.MAX_VALUE))
+        );
 
         jTabbedPaneMenu.addTab("Propietario", jPanelPropietario);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        jLabel1.setText("Salir");
+        jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTabbedPaneMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 1190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPaneMenu)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jTabbedPaneMenu.getAccessibleContext().setAccessibleName("Menu");
@@ -257,24 +293,81 @@ public class fromMenu extends javax.swing.JFrame {
         formularioinmueble.setVisible(true);
     }//GEN-LAST:event_btnNuevoInmuebleActionPerformed
 
-    private void jButtoNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtoNuevoActionPerformed
+    private void jbtnNuevoInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnNuevoInquilinoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtoNuevoActionPerformed
+        Inquilino inquilino=new Inquilino();
+      
+        ConsultasInquilno cdInquilino = new ConsultasInquilno();
+        Vista.Inquilino.FrmInquilino frmI = new Vista.Inquilino.FrmInquilino();
+        CtrInquilino ctrInquilino = new CtrInquilino(inquilino, cdInquilino, frmI);
+        
+        ctrInquilino.iniciar();
+        frmI.setVisible(true);
+        frmI.btnModificar.setEnabled(false);
+        frmI.btnBorrar.setEnabled(false);
+         //PanelInquilino.cargarInquilinos();
+        
+        
+    }//GEN-LAST:event_jbtnNuevoInquilinoActionPerformed
 
-    private void jButtoNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtoNuevoMouseClicked
+    private void jbtnAbrirInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAbrirInquilinoActionPerformed
         // TODO add your handling code here:
-        //---- PROPIETARIO
-        Propietario pod = new Propietario();
-        ConsultasPropietario podP = new ConsultasPropietario ();
-        Vista.Propietario.frmPropietario frmP = new Vista.Propietario.frmPropietario();
+       Inquilino inquilino=new Inquilino();
+       ConsultasInquilno cdInquilino = new ConsultasInquilno();
+       Vista.Inquilino.FrmInquilino frmI = new Vista.Inquilino.FrmInquilino();
+     // int fila=Vista.Inquilino.PanelInquilino.modeloInquilino.
+      //  inquilino.setDni_inquilino(Vista.Inquilino.PanelInquilino.modeloInquilino.getSelectedRow());
+      inquilino= PanelInquilino.obtenerInquilinoDeTabla();
+       if (inquilino==null)
+           { JOptionPane.showMessageDialog(null, "No se selecciono ningun inquilino de la tabla");}
+            else {
+      cdInquilino.Buscar(inquilino);
+      frmI.jtDni.setText(Integer.toString(inquilino.getDni_inquilino()));
+      frmI.jtNombre.setText(inquilino.getNombre_inquilino());
+      frmI.jtApellido.setText(inquilino.getApellido_inquilino());
+      frmI.jtCuit.setText(inquilino.getCuit_inquilino());
+      frmI.jtLugarTrab.setText(inquilino.getLugar_trabajo_inquilino());
+      frmI.jtGarante.setText(inquilino.getNom_garante_inquilino());
+      frmI.jtDniGarante.setText(Integer.toString(inquilino.getDni_garante_inquilino()));
+      CtrInquilino ctrInquilino = new CtrInquilino(inquilino, cdInquilino, frmI);
+        ctrInquilino.iniciar();
+        PanelInquilino.cargarInquilinos();
+        frmI.btnGuardar.setEnabled(false);
+       // this.setEnabled(false);
+       }
+               
+    }//GEN-LAST:event_jbtnAbrirInquilinoActionPerformed
 
-        CtrPropietario ctrl = new CtrPropietario(pod,podP,frmP);
-        ctrl.iniciar();
-        this.setEnabled(false);
-        //-----------------
+    private void jbtnBorrarInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBorrarInquilinoActionPerformed
+        // TODO add your handling code here:
+          Inquilino inquilino=new Inquilino();
+           ConsultasInquilno cdInquilino = new ConsultasInquilno();
+           inquilino= PanelInquilino.obtenerInquilinoDeTabla();
+        
+             if (inquilino==null)
+           { JOptionPane.showMessageDialog(null, "No se selecciono ningun inquilino de la tabla");}
+            else {
+            int i =JOptionPane.showConfirmDialog(this,"¿Desea eliminar el inquilino seleccionado?","Confirmar Eliminación",JOptionPane.YES_NO_OPTION);
+            if(i==0){
+             i = JOptionPane.showConfirmDialog(this,"¿Realmente desea eliminar el inquilino seleccionado?","Confirmar Eliminación",JOptionPane.YES_NO_OPTION);
+            if(i==0)
+             {              
+           cdInquilino.Borrar(inquilino);
+           JOptionPane.showMessageDialog(null, "Se elimino inquilino", "Info", JOptionPane.WARNING_MESSAGE);
+           PanelInquilino.cargarInquilinos();
+             }
+            }
+           }
+    }//GEN-LAST:event_jbtnBorrarInquilinoActionPerformed
 
-        frmP.setVisible(true);
-    }//GEN-LAST:event_jButtoNuevoMouseClicked
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+         int i =JOptionPane.showConfirmDialog(this,"¿Desea Salir del sistema?","Confirmar salida",JOptionPane.YES_NO_OPTION);
+            if(i==0){
+        System.exit(0);
+        setDefaultCloseOperation(Login.EXIT_ON_CLOSE);
+            }
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -306,7 +399,21 @@ public class fromMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new fromMenu().setVisible(true);
+                 new Login().setVisible(true);
+             //  new fromMenu().setVisible(true);
+               // fromMenu tablero=new fromMenu();
+               // tablero.setLocationRelativeTo(null);
+               // tablero.setVisible(true);
+                
+                //PROPIETARIO
+              //  panelPropietarioList panelPropietarioList= new panelPropietarioList();
+              //  tablero.jPanelPropietario.add(panelPropietarioList);
+               // panelPropietarioList.isEnabled();
+                
+                //inquilino
+              //  PanelInquilino panelInquilino= new PanelInquilino();
+              //  tablero.jPanelInquilino.add(panelInquilino);
+               // panelInquilino.isEnabled();
                 
             }
         });
@@ -321,19 +428,19 @@ public class fromMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNuevoInmueble;
-    private javax.swing.JButton jButtoNuevo;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanelContrato;
     private javax.swing.JPanel jPanelInmueble;
     private javax.swing.JPanel jPanelInquilino;
     private javax.swing.JPanel jPanelPropietario;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTabbedPane jTabbedPaneMenu;
-    private Vista.Propietario.panelPropietarioList panelPropietarioList2;
+    private javax.swing.JButton jbtnAbrirInquilino;
+    private javax.swing.JButton jbtnBorrarInquilino;
+    private javax.swing.JButton jbtnNuevoInquilino;
+    private Vista.Inquilino.PanelInquilino panelInquilino1;
+    private Vista.Propietario.panelPropietarioList panelPropietarioList1;
     public javax.swing.JTable tabInmuebles;
-    private javax.swing.JTable tabInquilino;
     // End of variables declaration//GEN-END:variables
 }
