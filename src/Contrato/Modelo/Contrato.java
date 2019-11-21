@@ -107,5 +107,6 @@ public class Contrato {
         this.fecha_fin = fecha_fin;
     }
     
+   
     
 }

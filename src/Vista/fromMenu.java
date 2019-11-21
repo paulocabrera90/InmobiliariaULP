@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import Contrato.Controlador.*;
+import Contrato.Modelo.*;
 import Inmueble.Modelo.ConsultasInmueble;
 import Inmueble.Controlador.CrlInmueble;
 import Vista.Inmueble.FormInmueble;
@@ -12,7 +14,14 @@ import Inmueble.Modelo.Inmueble;
 import Propietario.Controlador.CtrPropietario;
 import Propietario.Modelo.ConsultasPropietario;
 import Propietario.Modelo.Propietario;
+import Utility.EventEscuchar;
+import Vista.Contrato.FromContrato;
+import Vista.Contrato.PanelContratoList;
 import Vista.Propietario.panelPropietarioList;
+import java.awt.AWTEvent;
+import java.awt.Event;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -34,11 +43,11 @@ public class fromMenu extends javax.swing.JFrame {
         modeloinmuebles=new DefaultTableModel();
         armarCabeceraInmuebles();
         cargarInmuebles();
-        
-        
-        
+              
         
     }
+    
+    
     public void armarCabeceraInmuebles(){
         ArrayList<Object> columnasi=new ArrayList<Object>();
         columnasi.add("Características");
@@ -76,6 +85,8 @@ public class fromMenu extends javax.swing.JFrame {
 
         jTabbedPaneMenu = new javax.swing.JTabbedPane();
         jPanelContrato = new javax.swing.JPanel();
+        panelContratoList1 = new Vista.Contrato.PanelContratoList();
+        jButtonNuevoCon = new javax.swing.JButton();
         jPanelInquilino = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabInquilino = new javax.swing.JTable();
@@ -88,7 +99,7 @@ public class fromMenu extends javax.swing.JFrame {
         btnNuevoInmueble = new javax.swing.JButton();
         jPanelPropietario = new javax.swing.JPanel();
         jButtoNuevo = new javax.swing.JButton();
-        panelPropietarioList2 = new Vista.Propietario.panelPropietarioList();
+        jPanelPropietario1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,18 +110,39 @@ public class fromMenu extends javax.swing.JFrame {
             }
         });
 
+        jButtonNuevoCon.setActionCommand("jButtonNuevoCon");
+        jButtonNuevoCon.setLabel("Nuevo");
+        jButtonNuevoCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNuevoConActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelContratoLayout = new javax.swing.GroupLayout(jPanelContrato);
         jPanelContrato.setLayout(jPanelContratoLayout);
         jPanelContratoLayout.setHorizontalGroup(
             jPanelContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 785, Short.MAX_VALUE)
+            .addGroup(jPanelContratoLayout.createSequentialGroup()
+                .addGroup(jPanelContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelContratoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panelContratoList1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelContratoLayout.createSequentialGroup()
+                        .addGap(384, 384, 384)
+                        .addComponent(jButtonNuevoCon)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanelContratoLayout.setVerticalGroup(
             jPanelContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 449, Short.MAX_VALUE)
+            .addGroup(jPanelContratoLayout.createSequentialGroup()
+                .addComponent(panelContratoList1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonNuevoCon)
+                .addContainerGap())
         );
 
         jTabbedPaneMenu.addTab("Contrato", jPanelContrato);
+        jPanelContrato.getAccessibleContext().setAccessibleDescription("");
 
         tabInquilino.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -159,7 +191,7 @@ public class fromMenu extends javax.swing.JFrame {
                             .addComponent(jButton1)
                             .addComponent(jButton2)
                             .addComponent(jButton3))))
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         jTabbedPaneMenu.addTab("Inquilino", jPanelInquilino);
@@ -202,7 +234,7 @@ public class fromMenu extends javax.swing.JFrame {
                 .addGroup(jPanelInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNuevoInmueble))
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         jTabbedPaneMenu.addTab("Inmueble", jPanelInmueble);
@@ -219,7 +251,7 @@ public class fromMenu extends javax.swing.JFrame {
             }
         });
         jPanelPropietario.add(jButtoNuevo);
-        jPanelPropietario.add(panelPropietarioList2);
+        jPanelPropietario.add(jPanelPropietario1);
 
         jTabbedPaneMenu.addTab("Propietario", jPanelPropietario);
 
@@ -228,9 +260,8 @@ public class fromMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jTabbedPaneMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,6 +307,22 @@ public class fromMenu extends javax.swing.JFrame {
         frmP.setVisible(true);
     }//GEN-LAST:event_jButtoNuevoMouseClicked
 
+    private void jButtonNuevoConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoConActionPerformed
+        // TODO add your handling code here:
+        Contrato cont = new Contrato();
+        ConsultaContrato podCont = new ConsultaContrato();
+        FromContrato frmCont = new FromContrato();
+
+        CtrlContrato ctrl = new CtrlContrato(cont,podCont,frmCont);
+        ctrl.iniciar();
+        this.setEnabled(false);
+        //-----------------        
+        frmCont.setVisible(true);
+        
+//        if(add)        
+        
+    }//GEN-LAST:event_jButtonNuevoConActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -306,8 +353,18 @@ public class fromMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new fromMenu().setVisible(true);
+               fromMenu tablero = new fromMenu();
+               tablero.setLocation(0, 0);
+               tablero.setVisible(true);
                 
+               //--- CONTRATO ---
+//               PanelContratoList panelContrato = new PanelContratoList();
+//               tablero.jPanelContrato.add(panelContrato);
+               
+                //--- POPIETARIO ---
+//               panelPropietarioList panelPopietaro = new panelPropietarioList();
+//               tablero.jPanelPropietario.add(panelPopietaro);
+               
             }
         });
         
@@ -318,21 +375,25 @@ public class fromMenu extends javax.swing.JFrame {
     public void enabledPanel (boolean flag){
          this.setVisible(flag);
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNuevoInmueble;
-    private javax.swing.JButton jButtoNuevo;
+    public javax.swing.JButton jButtoNuevo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JPanel jPanelContrato;
+    private javax.swing.JButton jButtonNuevoCon;
+    public javax.swing.JPanel jPanelContrato;
     private javax.swing.JPanel jPanelInmueble;
     private javax.swing.JPanel jPanelInquilino;
     private javax.swing.JPanel jPanelPropietario;
+    private javax.swing.JPanel jPanelPropietario1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTabbedPane jTabbedPaneMenu;
-    private Vista.Propietario.panelPropietarioList panelPropietarioList2;
+    private Vista.Contrato.PanelContratoList panelContratoList1;
     public javax.swing.JTable tabInmuebles;
     private javax.swing.JTable tabInquilino;
     // End of variables declaration//GEN-END:variables
