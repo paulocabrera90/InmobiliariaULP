@@ -12,6 +12,7 @@ import Inmueble.Modelo.Inmueble;
 import Inmueble.Modelo.TipoInmueble;
 import Propietario.Modelo.ConsultasPropietario;
 import Propietario.Modelo.Propietario;
+import Vista.Inmueble.PanelInmueble;
 import Vista.fromMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -64,7 +65,10 @@ public class CrlInmueble implements ActionListener{
           inmueble.setPropietario(propietario);
           inmueble.setTipo_inmueble((TipoInmueble) formulario.cboTipo_inm.getSelectedItem());
           inmueble.setDireccion_inmueble(formulario.txtDireccion.getText());
-          inmueble.setEstado_inmueble(formulario.txtEstadoContrato.getText());
+          if(formulario.rbDisponible.isSelected())
+            inmueble.setEstado_inmueble("Disponible");
+          else 
+              inmueble.setEstado_inmueble("No disponible");
           inmueble.setPrecio_base(Double.parseDouble(formulario.txtPrecio.getText()));
           inmueble.setSuperficie(Double.parseDouble(formulario.txtSuperficie.getText()));
           
@@ -73,7 +77,7 @@ public class CrlInmueble implements ActionListener{
               
               JOptionPane.showMessageDialog(null, "Inmueble guardado");
               limpiar();
-              fromMenu.cargarInmuebles();
+              PanelInmueble.cargarInmuebles();
               
               
           } else{ JOptionPane.showMessageDialog(null, "Error al guardar inmueble");
@@ -88,7 +92,10 @@ public class CrlInmueble implements ActionListener{
           inmueble.setPropietario(propietario);
           inmueble.setTipo_inmueble((TipoInmueble) formulario.cboTipo_inm.getSelectedItem());
           inmueble.setDireccion_inmueble(formulario.txtDireccion.getText());
-          inmueble.setEstado_inmueble(formulario.txtEstadoContrato.getText());
+          if(formulario.rbDisponible.isSelected())
+            inmueble.setEstado_inmueble("Disponible");
+          else 
+              inmueble.setEstado_inmueble("No disponible");
           inmueble.setPrecio_base(Double.parseDouble(formulario.txtPrecio.getText()));
           inmueble.setSuperficie(Double.parseDouble(formulario.txtSuperficie.getText()));
           
@@ -108,11 +115,11 @@ public class CrlInmueble implements ActionListener{
           
           inmueble.setId_inmueble(Integer.parseInt(formulario.txtID_inmueble.getText()));
 
-          if (consulta.Borrar(inmueble)){
+          if (consulta.Borrar(inmueble.getId_inmueble())){
               
-              JOptionPane.showMessageDialog(null, "Inmueble orrado");
+              JOptionPane.showMessageDialog(null, "Inmueble borrado");
               limpiar();
-              fromMenu.cargarInmuebles();
+              PanelInmueble.cargarInmuebles();
               
               
           } else{ JOptionPane.showMessageDialog(null, "Error al borrar");
@@ -130,7 +137,10 @@ public class CrlInmueble implements ActionListener{
               
               formulario.txtDireccion.setText(inmueble.getDireccion_inmueble());
               formulario.txtDniPropietario.setText(Integer.toString(inmueble.getPropietario().getDni_propietario()));
-              formulario.txtEstadoContrato.setText(inmueble.getEstado_inmueble());
+              if(inmueble.getEstado_inmueble()=="Disponible")
+                formulario.rbDisponible.setSelected(true);
+              else 
+                  formulario.rbNodisponible.setSelected(true);
               formulario.txtPrecio.setText(Double.toString(inmueble.getPrecio_base()));
               formulario.txtSuperficie.setText(Double.toString(inmueble.getSuperficie()));
               formulario.cboTipo_inm.setSelectedItem(inmueble.getTipo_inmueble().getId_tipo_inmueble());             
@@ -152,7 +162,6 @@ public class CrlInmueble implements ActionListener{
       
       formulario.txtDireccion.setText("");
       formulario.txtDniPropietario.setText("");
-      formulario.txtEstadoContrato.setText("");
       formulario.txtPrecio.setText("");
       formulario.txtSuperficie.setText("");
  
