@@ -234,10 +234,6 @@ public Propietario buscarPropietarioXNombre(String nombre) {
     }//FIN buscar x nombre
     
 
-
-
-
-
 public List <Propietario>  busquedaXNomApeDniP(StringBuffer query) {
        List <Propietario> propietarios= new ArrayList<Propietario>();
        //  PreparedStatement ps = null;
@@ -275,7 +271,6 @@ public List <Propietario>  busquedaXNomApeDniP(StringBuffer query) {
          //System.out.println("Alumno: id: " + alumno.getId() + "; Nombre:  " + alumno.getNombre() +"; Dni: " + alumno.getDni() +"; Domicilio:  " +alumno.getDomicilio()) ;       
          return propietarios;
 
- 
 }
  
 }
