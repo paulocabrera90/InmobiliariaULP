@@ -3,17 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/D:/Git%20repositorio/Repo_defi_inmo/bk_20_11_v2/InmobiliariaULP/src/Vista/Login.java</file>
-            <file>file:/D:/Git%20repositorio/Repo_defi_inmo/bk_20_11_v2/InmobiliariaULP/src/Vista/Inquilino/PanelInquilino.java</file>
-            <file>file:/D:/Git%20repositorio/Repo_defi_inmo/bk_20_11_v2/InmobiliariaULP/src/Vista/Inquilino/FrmInquilino.java</file>
-            <file>file:/D:/Git%20repositorio/Repo_defi_inmo/bk_20_11_v2/InmobiliariaULP/src/Inquilino/Modelo/ConsultasInquilno.java</file>
-            <file>file:/D:/Git%20repositorio/Repo_defi_inmo/bk_20_11_v2/InmobiliariaULP/src/Vista/fromMenu.java</file>
-=======
-            <file>file:/C:/Users/kevin/inmo/InmobiliariaULP/src/Vista/Propietario/panelPropietarioList.java</file>
-            <file>file:/C:/Users/kevin/inmo/InmobiliariaULP/src/Vista/Propietario/frmPropietario.java</file>
-            <file>file:/C:/Users/kevin/inmo/InmobiliariaULP/src/Vista/fromMenu.java</file>
->>>>>>> ce8c1334c412b309b641ee78e92821920e0ac92e
+            <file>file:/C:/Users/garba/Documents/NetBeansProjects/InmobiliariaULP/src/Inmueble/Modelo/ConsultasInmueble.java</file>
+            <file>file:/C:/Users/garba/Documents/NetBeansProjects/InmobiliariaULP/src/Vista/Inmueble/PanelInmueble.java</file>
+            <file>file:/C:/Users/garba/Documents/NetBeansProjects/InmobiliariaULP/src/Inmueble/Controlador/CrlInmueble.java</file>
         </group>
     </open-files>
 </project-private>
