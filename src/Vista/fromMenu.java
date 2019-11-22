@@ -67,9 +67,9 @@ public class fromMenu extends javax.swing.JFrame {
         panelInquilino1 = new Vista.Inquilino.PanelInquilino();
         jPanelPropietario = new javax.swing.JPanel();
         panelPropietarioList1 = new Vista.Propietario.panelPropietarioList();
+        jLabel1 = new javax.swing.JLabel();
         jPanelInmueble = new javax.swing.JPanel();
         panelInmueble1 = new Vista.Inmueble.PanelInmueble();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,11 +84,11 @@ public class fromMenu extends javax.swing.JFrame {
         jPanelContrato.setLayout(jPanelContratoLayout);
         jPanelContratoLayout.setHorizontalGroup(
             jPanelContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1185, Short.MAX_VALUE)
+            .addGap(0, 1213, Short.MAX_VALUE)
         );
         jPanelContratoLayout.setVerticalGroup(
             jPanelContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 544, Short.MAX_VALUE)
+            .addGap(0, 604, Short.MAX_VALUE)
         );
 
         jTabbedPaneMenu.addTab("Contrato", jPanelContrato);
@@ -136,7 +136,7 @@ public class fromMenu extends javax.swing.JFrame {
                     .addGroup(jPanelInquilinoLayout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanelInquilinoLayout.setVerticalGroup(
             jPanelInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,46 +150,10 @@ public class fromMenu extends javax.swing.JFrame {
                     .addComponent(jbtnBorrarInquilino)
                     .addComponent(jbtnAbrirInquilino)
                     .addComponent(jbtnNuevoInquilino))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPaneMenu.addTab("Inquilino", jPanelInquilino);
-
-        javax.swing.GroupLayout jPanelPropietarioLayout = new javax.swing.GroupLayout(jPanelPropietario);
-        jPanelPropietario.setLayout(jPanelPropietarioLayout);
-        jPanelPropietarioLayout.setHorizontalGroup(
-            jPanelPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPropietarioLayout.createSequentialGroup()
-                .addComponent(panelPropietarioList1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 421, Short.MAX_VALUE))
-        );
-        jPanelPropietarioLayout.setVerticalGroup(
-            jPanelPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPropietarioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelPropietarioList1, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
-        );
-
-        jTabbedPaneMenu.addTab("Propietario", jPanelPropietario);
-
-        javax.swing.GroupLayout jPanelInmuebleLayout = new javax.swing.GroupLayout(jPanelInmueble);
-        jPanelInmueble.setLayout(jPanelInmuebleLayout);
-        jPanelInmuebleLayout.setHorizontalGroup(
-            jPanelInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelInmuebleLayout.createSequentialGroup()
-                .addComponent(panelInmueble1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 518, Short.MAX_VALUE))
-        );
-        jPanelInmuebleLayout.setVerticalGroup(
-            jPanelInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelInmuebleLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelInmueble1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(200, Short.MAX_VALUE))
-        );
-
-        jTabbedPaneMenu.addTab("Inmueble", jPanelInmueble);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jLabel1.setText("Salir");
@@ -201,21 +165,57 @@ public class fromMenu extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanelPropietarioLayout = new javax.swing.GroupLayout(jPanelPropietario);
+        jPanelPropietario.setLayout(jPanelPropietarioLayout);
+        jPanelPropietarioLayout.setHorizontalGroup(
+            jPanelPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPropietarioLayout.createSequentialGroup()
+                .addComponent(panelPropietarioList1, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                .addComponent(jLabel1))
+        );
+        jPanelPropietarioLayout.setVerticalGroup(
+            jPanelPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelPropietarioLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanelPropietarioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelPropietarioList1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(236, Short.MAX_VALUE))
+        );
+
+        jTabbedPaneMenu.addTab("Propietario", jPanelPropietario);
+
+        javax.swing.GroupLayout jPanelInmuebleLayout = new javax.swing.GroupLayout(jPanelInmueble);
+        jPanelInmueble.setLayout(jPanelInmuebleLayout);
+        jPanelInmuebleLayout.setHorizontalGroup(
+            jPanelInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelInmuebleLayout.createSequentialGroup()
+                .addComponent(panelInmueble1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 546, Short.MAX_VALUE))
+        );
+        jPanelInmuebleLayout.setVerticalGroup(
+            jPanelInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelInmuebleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelInmueble1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(260, Short.MAX_VALUE))
+        );
+
+        jTabbedPaneMenu.addTab("Inmueble", jPanelInmueble);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPaneMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 1190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1))
+                .addComponent(jTabbedPaneMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 1218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPaneMenu)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jTabbedPaneMenu.getAccessibleContext().setAccessibleName("Menu");
