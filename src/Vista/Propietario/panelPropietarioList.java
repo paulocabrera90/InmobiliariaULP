@@ -24,6 +24,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -313,7 +315,77 @@ public class panelPropietarioList extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAbrirPropietarioMouseClicked
 
     private void btnBuscarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarBActionPerformed
-
+             List <Propietario> Propietariobus = new ArrayList<Propietario>() ;
+        ConsultasPropietario cdPropietario = new ConsultasPropietario();
+       
+       StringBuffer buffer = new StringBuffer( "SELECT * FROM propietario WHERE " );
+       
+       if ((txtNombreB.getText().length() < 1)
+           &&(txtApellidoB.getText().length() < 1) && ( txtDNIB.getText().length()<1))
+      {
+            borrarPropietarios();
+           cargarPropietarios();
+      }
+      else {
+       if ((txtNombreB.getText() != null && txtNombreB.getText().length() > 0)
+           &&( txtApellidoB.getText() != null && txtApellidoB.getText().length() > 0 ) && ( txtDNIB.getText() != null && txtDNIB.getText().length() > 0 ))
+       {
+           buffer.append("nombre_propietario LIKE '%"+txtNombreB.getText()+"%' AND apellido_propietario LIKE '%"+txtApellidoB.getText()+"%' AND dni_propietario LIKE '%"+txtDNIB.getText()+"%'");
+       }
+       else {
+            if ((txtNombreB.getText() != null &&txtNombreB.getText().length() > 0)
+           &&( txtApellidoB.getText() != null && txtApellidoB.getText().length() > 0 )){
+              buffer.append("nombre_propietario LIKE '%"+txtNombreB.getText()+"%' AND apellido_propietario LIKE '%"+txtApellidoB.getText()+"%'");  
+            } 
+            else {
+              if ((txtNombreB.getText() != null && txtNombreB.getText().length() > 0) && (txtDNIB.getText() != null && txtDNIB.getText().length() > 0 ))
+              {
+                  buffer.append("nombre_propietario LIKE '%"+txtNombreB.getText()+"%' AND dni_propietario LIKE '%"+txtDNIB.getText()+"%'");
+              } 
+              else{
+                  if((txtApellidoB.getText() != null && txtApellidoB.getText().length() > 0 ) && ( txtDNIB.getText() != null &&txtDNIB.getText().length() > 0 ))
+                  {
+                     buffer.append (" apellido_propietario LIKE '%"+txtApellidoB.getText()+"%' AND dni_propietario LIKE '%"+txtDNIB.getText()+"%'");
+                  }
+                  else {
+                      if( txtNombreB.getText() != null && txtNombreB.getText().length() > 0 ) 
+                      { //suponiendo que el parámetro fuera un String
+                      buffer.append( "nombre_propietario LIKE '%"+txtNombreB.getText()+"%'" );
+                      }
+                      else {
+                         if( txtApellidoB.getText() != null && txtApellidoB.getText().length() > 0 ) 
+                         { //suponiendo que el parámetro fuera un String
+                          buffer.append( "apellido_propietario LIKE '%"+ txtApellidoB.getText()+"%'");
+                          } 
+                          else {
+                             if(txtDNIB.getText() != null &&txtDNIB.getText().length() > 0 ) 
+                             { //suponiendo que el parámetro fuera un String
+                               buffer.append( "dni_propietario LIKE '%"+txtDNIB.getText()+"%'" );
+                             } 
+                             //else{
+                             ///    cargarInquilinos();
+                             //}
+                      }
+                   }
+                }
+              }
+            }
+             Propietariobus = cdPropietario.busquedaXNomApeDniP(buffer); //.(JtNombre_inqui.getText());
+             borrarPropietarios();
+            if (Propietariobus.isEmpty()){
+                JOptionPane.showMessageDialog(null, "No se encontraron resultados");
+            } else {
+             for(Propietario pro: Propietariobus){
+                modeloPropietario.addRow(new Object[] {pro.getDni_propietario(),pro.getNombre_propietario(),pro.getApellido_propietario(),
+                pro.getDomicilio_propietario(),pro.getTelefono_propietario()});
+              }
+            }
+       
+       
+    
+       
+       }
+       }             
     }//GEN-LAST:event_btnBuscarBActionPerformed
 
     private void txtNombreBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreBActionPerformed
