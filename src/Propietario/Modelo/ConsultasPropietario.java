@@ -5,10 +5,13 @@
  */
 package Propietario.Modelo;
 
+import Inquilino.Modelo.Inquilino;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -156,6 +159,44 @@ public boolean Buscar(Propietario propi){
             }
         }
         
+    }
+
+public boolean obtenerPropietarios(List <Propietario> propietarios){
+        new ArrayList<Propietario>();
+         PreparedStatement ps = null;
+       ResultSet rs= null;
+        Connection con = conexion();
+          try {
+            
+            
+            String sql= "SELECT * FROM propietario ORDER BY apellido_propietario;";
+             ps= con.prepareStatement(sql);
+             rs= ps.executeQuery();
+            Propietario propietario;// = new Inquilino();
+                      
+           // ConsultasPropietario consultapropietario=new ConsultasPropietario();
+           
+          
+            
+            while(rs.next()){
+            propietario= new Propietario();
+              propietario.setDni_propietario(rs.getInt("dni_propietario"));
+            propietario.setNombre_propietario(rs.getString("nombre_propietario"));
+            propietario.setApellido_propietario(rs.getString("apellido_propietario"));
+            propietario.setDomicilio_propietario(rs.getString("domicilio_propietario"));
+            propietario.setTelefono_propietario(rs.getString("telefono_propietario"));
+            propietarios.add(propietario);
+            }
+           ps.close();
+           return true;
+          
+          }   catch (SQLException ex) {
+           // Logger.getLogger(AlumnoData.class.getName()).log(Level.SEVERE, null, ex);obtener
+            System.out.println("No se puede obtener lista de propietario ");
+           return false;
+        }
+          
+
     }
  
 }
