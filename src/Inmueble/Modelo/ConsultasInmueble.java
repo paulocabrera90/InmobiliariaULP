@@ -187,14 +187,15 @@ public boolean Buscar(Inmueble inmueble){
         String sql = "SELECT * FROM inmueble"; 
         
         try {
-            Propietario propietario=new Propietario();
-            TipoInmueble tipoinmueble=new TipoInmueble();
+            
             ConsultasPropietario consultapropietario=new ConsultasPropietario();
             ConsultasTipoInmueble consultastipoinmueble=new ConsultasTipoInmueble();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
                 Inmueble inmueble=new Inmueble();
+                Propietario propietario=new Propietario();
+                TipoInmueble tipoinmueble=new TipoInmueble();
                 inmueble.setId_inmueble(rs.getInt("Id_inmueble"));
                 propietario.setDni_propietario(rs.getInt("dni_propietario"));
                 tipoinmueble.setId_tipo_inmueble(rs.getInt("id_tipo_inmueble"));
@@ -208,8 +209,6 @@ public boolean Buscar(Inmueble inmueble){
                 inmueble.setEstado_inmueble(rs.getString("estado_inmueble"));
                 inmuebles.add(inmueble);
             }
-            for(Inmueble i:inmuebles)
-                System.out.println(i.getPropietario().getApellido_propietario());
             return true; 
         }
         catch(SQLException e){
@@ -226,114 +225,28 @@ public boolean Buscar(Inmueble inmueble){
         }
         
     }
- public boolean obtenerInmueblesDisponibles(ArrayList<Inmueble> inmuebles){
-     PreparedStatement ps = null;
-        ResultSet rs= null;
-        Connection con = conexion();
-        
-        String sql = "SELECT * FROM inmueble WHERE estado_inmueble='Disponible'"; 
-        
-        try {
-            Propietario propietario=new Propietario();
-            TipoInmueble tipoinmueble=new TipoInmueble();
-            ConsultasPropietario consultapropietario=new ConsultasPropietario();
-            ConsultasTipoInmueble consultastipoinmueble=new ConsultasTipoInmueble();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while(rs.next()){
-                Inmueble inmueble=new Inmueble();
-                propietario.setDni_propietario(rs.getInt("dni_propietario"));
-                tipoinmueble.setId_tipo_inmueble(rs.getInt("id_tipo_inmueble"));
-                consultapropietario.Buscar(propietario);
-                consultastipoinmueble.Buscar(tipoinmueble);
-                inmueble.setTipo_inmueble(tipoinmueble);
-                inmueble.setPropietario(propietario);
-                inmueble.setId_inmueble(rs.getInt("Id_inmueble"));
-                inmueble.setDireccion_inmueble(rs.getString("direccion_inmueble"));
-                inmueble.setSuperficie(Double.parseDouble(rs.getString("superficie")));
-                inmueble.setPrecio_base(Double.parseDouble(rs.getString("precio_base")));
-                inmueble.setEstado_inmueble(rs.getString("estado_inmueble")); 
-                inmuebles.add(inmueble);
-    
-            }
-            return true; 
-        }
-        catch(SQLException e){
-        System.err.println(e);
-        return false;
-        }finally{
-            try {
-                con.close();
-                
-            }
-            catch(SQLException e){
-                System.err.println(e);
-            }
-        }
+ 
      
- }
- public boolean obtenerInmueblesNoDisponibles(ArrayList<Inmueble> inmuebles){
-     PreparedStatement ps = null;
-        ResultSet rs= null;
-        Connection con = conexion();
-        
-        String sql = "SELECT * FROM inmueble WHERE estado_inmueble='No disponible'"; 
-        
-        try {
-            Propietario propietario=new Propietario();
-            TipoInmueble tipoinmueble=new TipoInmueble();
-            ConsultasPropietario consultapropietario=new ConsultasPropietario();
-            ConsultasTipoInmueble consultastipoinmueble=new ConsultasTipoInmueble();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while(rs.next()){
-                Inmueble inmueble=new Inmueble();
-                propietario.setDni_propietario(rs.getInt("dni_propietario"));
-                tipoinmueble.setId_tipo_inmueble(rs.getInt("id_tipo_inmueble"));
-                consultapropietario.Buscar(propietario);
-                consultastipoinmueble.Buscar(tipoinmueble);
-                inmueble.setTipo_inmueble(tipoinmueble);
-                inmueble.setPropietario(propietario);
-                inmueble.setId_inmueble(rs.getInt("Id_inmueble"));
-                inmueble.setDireccion_inmueble(rs.getString("direccion_inmueble"));
-                inmueble.setSuperficie(Double.parseDouble(rs.getString("superficie")));
-                inmueble.setPrecio_base(Double.parseDouble(rs.getString("precio_base")));
-                inmueble.setEstado_inmueble(rs.getString("estado_inmueble")); 
-                inmuebles.add(inmueble);
-    
-            }
-            return true; 
-        }
-        catch(SQLException e){
-        System.err.println(e);
-        return false;
-        }finally{
-            try {
-                con.close();
-                
-            }
-            catch(SQLException e){
-                System.err.println(e);
-            }
-        }
-     
- }
+ 
+ 
+ 
  public boolean filtrarInmueblesPrecioDniTipo(ArrayList<Inmueble> inmuebles, double precio_base, int dni_propietario, int id_tipo_inmueble){
         
         PreparedStatement ps = null;
         ResultSet rs= null;
         Connection con = conexion();
         
-        String sql = "SELECT * FROM `inmueble` WHERE precio_base="+precio_base+" AND dni_propietario="+dni_propietario+" AND id_tipo_inmueble="+id_tipo_inmueble;
+        String sql = "SELECT * FROM `inmueble` WHERE precio_base<"+precio_base+" AND dni_propietario="+dni_propietario+" AND id_tipo_inmueble="+id_tipo_inmueble;
         
         try {
-            Propietario propietario=new Propietario();
-            TipoInmueble tipoinmueble=new TipoInmueble();
+            
             ConsultasPropietario consultapropietario=new ConsultasPropietario();
             ConsultasTipoInmueble consultastipoinmueble=new ConsultasTipoInmueble();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
+                Propietario propietario=new Propietario();
+                TipoInmueble tipoinmueble=new TipoInmueble();
                 Inmueble inmueble=new Inmueble();
                 propietario.setDni_propietario(rs.getInt("dni_propietario"));
                 tipoinmueble.setId_tipo_inmueble(rs.getInt("id_tipo_inmueble"));
@@ -374,13 +287,13 @@ public boolean Buscar(Inmueble inmueble){
         String sql = "SELECT * FROM `inmueble` WHERE precio_base <"+precio_base+" AND dni_propietario="+dni_propietario;
         
         try {
-            Propietario propietario=new Propietario();
-            TipoInmueble tipoinmueble=new TipoInmueble();
             ConsultasPropietario consultapropietario=new ConsultasPropietario();
             ConsultasTipoInmueble consultastipoinmueble=new ConsultasTipoInmueble();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
+                Propietario propietario=new Propietario();
+                TipoInmueble tipoinmueble=new TipoInmueble();
                 Inmueble inmueble=new Inmueble();
                 propietario.setDni_propietario(rs.getInt("dni_propietario"));
                 tipoinmueble.setId_tipo_inmueble(rs.getInt("id_tipo_inmueble"));
@@ -421,13 +334,13 @@ public boolean Buscar(Inmueble inmueble){
         String sql = "SELECT * FROM `inmueble` WHERE precio_base <"+precio_base;
         
         try {
-            Propietario propietario=new Propietario();
-            TipoInmueble tipoinmueble=new TipoInmueble();
             ConsultasPropietario consultapropietario=new ConsultasPropietario();
             ConsultasTipoInmueble consultastipoinmueble=new ConsultasTipoInmueble();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
+                Propietario propietario=new Propietario();
+                TipoInmueble tipoinmueble=new TipoInmueble();
                 Inmueble inmueble=new Inmueble();
                 propietario.setDni_propietario(rs.getInt("dni_propietario"));
                 tipoinmueble.setId_tipo_inmueble(rs.getInt("id_tipo_inmueble"));
@@ -468,13 +381,13 @@ public boolean Buscar(Inmueble inmueble){
         String sql = "SELECT * FROM `inmueble` WHERE precio_base <"+precio_base+" AND id_tipo_inmueble="+tipo_inmueble;
         
         try {
-            Propietario propietario=new Propietario();
-            TipoInmueble tipoinmueble=new TipoInmueble();
             ConsultasPropietario consultapropietario=new ConsultasPropietario();
             ConsultasTipoInmueble consultastipoinmueble=new ConsultasTipoInmueble();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
+                Propietario propietario=new Propietario();
+                TipoInmueble tipoinmueble=new TipoInmueble();
                 Inmueble inmueble=new Inmueble();
                 propietario.setDni_propietario(rs.getInt("dni_propietario"));
                 tipoinmueble.setId_tipo_inmueble(rs.getInt("id_tipo_inmueble"));
@@ -515,13 +428,14 @@ public boolean Buscar(Inmueble inmueble){
         String sql = "SELECT * FROM `inmueble` WHERE dni_propietario="+dni_propietario+" AND id_tipo_inmueble="+tipo_inmueble;
         
         try {
-            Propietario propietario=new Propietario();
-            TipoInmueble tipoinmueble=new TipoInmueble();
+            
             ConsultasPropietario consultapropietario=new ConsultasPropietario();
             ConsultasTipoInmueble consultastipoinmueble=new ConsultasTipoInmueble();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
+                Propietario propietario=new Propietario();
+                TipoInmueble tipoinmueble=new TipoInmueble();
                 Inmueble inmueble=new Inmueble();
                 propietario.setDni_propietario(rs.getInt("dni_propietario"));
                 tipoinmueble.setId_tipo_inmueble(rs.getInt("id_tipo_inmueble"));
@@ -562,15 +476,15 @@ public boolean Buscar(Inmueble inmueble){
         String sql = "SELECT * FROM `inmueble` WHERE dni_propietario="+dni_propietario;
         
         try {
-            Propietario propietario=new Propietario();
-            TipoInmueble tipoinmueble=new TipoInmueble();
+            
             ConsultasPropietario consultapropietario=new ConsultasPropietario();
             ConsultasTipoInmueble consultastipoinmueble=new ConsultasTipoInmueble();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
+                Propietario propietario=new Propietario();
+                TipoInmueble tipoinmueble=new TipoInmueble();
                 Inmueble inmueble=new Inmueble();
-                propietario.setDni_propietario(rs.getInt("dni_propietario"));
                 tipoinmueble.setId_tipo_inmueble(rs.getInt("id_tipo_inmueble"));
                 consultapropietario.Buscar(propietario);
                 consultastipoinmueble.Buscar(tipoinmueble);
@@ -609,13 +523,14 @@ public boolean Buscar(Inmueble inmueble){
         String sql = "SELECT * FROM `inmueble` WHERE id_tipo_inmueble="+tipo_inmueble;
         
         try {
-            Propietario propietario=new Propietario();
-            TipoInmueble tipoinmueble=new TipoInmueble();
+            
             ConsultasPropietario consultapropietario=new ConsultasPropietario();
             ConsultasTipoInmueble consultastipoinmueble=new ConsultasTipoInmueble();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
+                Propietario propietario=new Propietario();
+                TipoInmueble tipoinmueble=new TipoInmueble();
                 Inmueble inmueble=new Inmueble();
                 propietario.setDni_propietario(rs.getInt("dni_propietario"));
                 tipoinmueble.setId_tipo_inmueble(rs.getInt("id_tipo_inmueble"));

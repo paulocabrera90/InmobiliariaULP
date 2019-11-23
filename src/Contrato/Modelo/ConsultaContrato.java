@@ -5,9 +5,16 @@
  */
 package Contrato.Modelo;
 
+import Inmueble.Modelo.ConsultasTipoInmueble;
+import Inmueble.Modelo.Inmueble;
+import Inmueble.Modelo.TipoInmueble;
+import Propietario.Modelo.ConsultasPropietario;
+import Propietario.Modelo.Propietario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -49,6 +56,8 @@ public class ConsultaContrato {
         }
         
     }
+    
+     
 
     private Connection conexion() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

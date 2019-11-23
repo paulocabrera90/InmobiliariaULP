@@ -4,6 +4,7 @@ package Propietario.Controlador;
 import Propietario.Modelo.ConsultasPropietario;
 import Propietario.Modelo.Propietario;
 import Vista.Propietario.frmPropietario;
+import Vista.Propietario.panelPropietarioList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -54,6 +55,8 @@ public class CtrPropietario implements ActionListener{
               JOptionPane.showMessageDialog(null, "Propietario Guardado");
               limpiar();
               
+              panelPropietarioList.cargarPropietarios();
+              
               
           } else{ JOptionPane.showMessageDialog(null, "Error al Guardar");
               limpiar();
@@ -77,6 +80,7 @@ public class CtrPropietario implements ActionListener{
               
               JOptionPane.showMessageDialog(null, "Propietario Modificado");
               limpiar();
+              panelPropietarioList.cargarPropietarios();
               
               
           } else{ JOptionPane.showMessageDialog(null, "Error al Modificar");
@@ -97,6 +101,8 @@ public class CtrPropietario implements ActionListener{
               
               JOptionPane.showMessageDialog(null, "Propietario Borrado");
               limpiar();
+              panelPropietarioList.cargarPropietarios();
+              frmP.dispose();
               
               
           } else{ JOptionPane.showMessageDialog(null, "Error al Borrar");

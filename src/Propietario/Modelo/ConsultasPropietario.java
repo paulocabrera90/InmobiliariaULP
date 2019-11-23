@@ -198,5 +198,79 @@ public boolean obtenerPropietarios(List <Propietario> propietarios){
           
 
     }
+
+public Propietario buscarPropietarioXNombre(String nombre) {
+       
+     
+       Propietario propietario= null ;
+        try{
+        String sql = "SELECT * FROM propietario WHERE nombre_propietario LIKE ?;";
+       // String sql ="SELECT * FROM alumno WHERE id_alumno = ? or nombre LIKE' %?%'or dni LIKE '%?%';";
+        PreparedStatement ps = con.prepareStatement(sql);//, Statement.RETURN_GENERATED_KEYS);
+        ps.setString(1, "%"+nombre+"%");  
+      //  preparedStatement.setString(1, "%" + DT + "%");
+        ResultSet rs=  ps.executeQuery();
+        
+        while (rs.next()){
+       
+        propietario =new Propietario() ;
+       propietario.setDni_propietario(rs.getInt("dni_propietario"));
+            propietario.setNombre_propietario(rs.getString("nombre_propietario"));
+            propietario.setApellido_propietario(rs.getString("apellido_propietario"));
+            propietario.setDomicilio_propietario(rs.getString("domicilio_propietario"));
+            propietario.setTelefono_propietario(rs.getString("telefono_propietario"));
+            
+        }
+       
+        ps.close();
+        
+        } catch (SQLException ex){
+            
+           
+            System.out.println("Error al  buscar " + ex.getMessage());
+        }
+         //System.out.println("Alumno: id: " + alumno.getId() + "; Nombre:  " + alumno.getNombre() +"; Dni: " + alumno.getDni() +"; Domicilio:  " +alumno.getDomicilio()) ;       
+         return propietario;
+    }//FIN buscar x nombre
+    
+
+public List <Propietario>  busquedaXNomApeDniP(StringBuffer query) {
+       List <Propietario> propietarios= new ArrayList<Propietario>();
+       //  PreparedStatement ps = null;
+       //ResultSet rs= null;
+        Connection con = conexion();
+     
+        Propietario propietario= null ;
+        try{
+        String sql = query.toString() ;
+       // String sql ="SELECT * FROM alumno WHERE id_alumno = ? or nombre LIKE' %?%'or dni LIKE '%?%';";
+        PreparedStatement ps = con.prepareStatement(sql);//, Statement.RETURN_GENERATED_KEYS);
+       // ps.setString(1, "%"+nombre+"%");  
+      //  preparedStatement.setString(1, "%" + DT + "%");
+        ResultSet rs=  ps.executeQuery();
+        
+        while (rs.next()){
+       
+        propietario =new Propietario() ;
+            propietario.setDni_propietario(rs.getInt("dni_propietario"));
+            propietario.setNombre_propietario(rs.getString("nombre_propietario"));
+            propietario.setApellido_propietario(rs.getString("apellido_propietario"));
+            propietario.setDomicilio_propietario(rs.getString("domicilio_propietario"));
+            propietario.setTelefono_propietario(rs.getString("telefono_propietario"));
+         
+            propietarios.add(propietario);
+        }
+       
+        ps.close();
+        
+        } catch (SQLException ex){
+            
+           
+            System.out.println("Error al  buscar " + ex.getMessage());
+        }
+         //System.out.println("Alumno: id: " + alumno.getId() + "; Nombre:  " + alumno.getNombre() +"; Dni: " + alumno.getDni() +"; Domicilio:  " +alumno.getDomicilio()) ;       
+         return propietarios;
+
+}
  
 }

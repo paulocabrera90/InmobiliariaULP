@@ -97,4 +97,7 @@ public class Inmueble {
         this.estado_inmueble = estado_inmueble;
     }
     
+    public String toString(){
+        return this.direccion_inmueble + ", zona " + this.estado_inmueble;
+    }
 }

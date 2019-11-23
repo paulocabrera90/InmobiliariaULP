@@ -13,6 +13,7 @@ import Inmueble.Modelo.TipoInmueble;
 import Propietario.Modelo.ConsultasPropietario;
 import Propietario.Modelo.Propietario;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -39,6 +40,7 @@ public class PanelInmueble extends javax.swing.JPanel {
         grpbotonesgrilla.add(rbDisponiblegrilla);
         grpbotonesgrilla.add(rbNodisponiblegrilla);
         grpbotonesgrilla.add(rbTodos);
+        rbTodos.setSelected(true);
         cargarPropietarios();
         cargarTipos();
         cargarPrecios();
@@ -62,7 +64,7 @@ public class PanelInmueble extends javax.swing.JPanel {
     public static void cargarInmuebles(ArrayList<Inmueble> inmuebles){
         borrarInmuebles();
         for(Inmueble i:inmuebles){
-            modeloinmuebles.addRow(new Object[] {i.getId_inmueble(),i.getTipo_inmueble(),i.getPropietario().getDni_propietario(),i.getSuperficie(),i.getPrecio_base()});
+            modeloinmuebles.addRow(new Object[] {i.getId_inmueble(),i.getTipo_inmueble(),i.getPropietario().getApellido_propietario(),i.getSuperficie(),i.getPrecio_base()});
         }
         
     }
@@ -196,6 +198,9 @@ public class PanelInmueble extends javax.swing.JPanel {
         cbPrecio = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         rbTodos = new javax.swing.JRadioButton();
+        btnLimpiarProp = new javax.swing.JButton();
+        btnLimpiarTipo = new javax.swing.JButton();
+        btnLimpiarPrecio = new javax.swing.JButton();
 
         tabInmuebles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -270,6 +275,7 @@ public class PanelInmueble extends javax.swing.JPanel {
 
         jLabel4.setText("Tipo de inmueble");
 
+        cbPrecio.setToolTipText("");
         cbPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbPrecioActionPerformed(evt);
@@ -282,6 +288,27 @@ public class PanelInmueble extends javax.swing.JPanel {
         rbTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbTodosActionPerformed(evt);
+            }
+        });
+
+        btnLimpiarProp.setText("Limpiar");
+        btnLimpiarProp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarPropActionPerformed(evt);
+            }
+        });
+
+        btnLimpiarTipo.setText("Limpiar");
+        btnLimpiarTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarTipoActionPerformed(evt);
+            }
+        });
+
+        btnLimpiarPrecio.setText("Limpiar");
+        btnLimpiarPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarPrecioActionPerformed(evt);
             }
         });
 
@@ -308,7 +335,12 @@ public class PanelInmueble extends javax.swing.JPanel {
                             .addComponent(cbPropietarios, 0, 126, Short.MAX_VALUE)
                             .addComponent(cbTipoInmueble, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbPrecio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3)))
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnLimpiarProp)
+                            .addComponent(btnLimpiarTipo)
+                            .addComponent(btnLimpiarPrecio)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(btnInmuebleNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -319,7 +351,7 @@ public class PanelInmueble extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(jLabel1)))
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,15 +373,21 @@ public class PanelInmueble extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cbPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLimpiarProp, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addGap(10, 10, 10)
-                        .addComponent(cbTipoInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbTipoInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLimpiarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLimpiarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInmuebleNuevo)
@@ -374,10 +412,16 @@ public class PanelInmueble extends javax.swing.JPanel {
         ConsultasInmueble consultainmueble= new ConsultasInmueble();
         if(tabInmuebles.getRowCount()!=0)
         {
-            consultainmueble.Borrar((Integer)tabInmuebles.getValueAt(tabInmuebles.getSelectedRow(),0));
+            
+               if(consultainmueble.Borrar((Integer)tabInmuebles.getValueAt(tabInmuebles.getSelectedRow(),0)))
+             {
             int rowselected=tabInmuebles.getSelectedRow();
             modeloinmuebles.removeRow(rowselected);
-            cargarInmueblesFiltrados();
+            cargarInmueblesFiltrados(); 
+            JOptionPane.showMessageDialog(null, "Inmueble eliminado");
+            
+            } else JOptionPane.showMessageDialog(null,"No se puede eliminar inmueble");
+            
         }
     }//GEN-LAST:event_btnEliminarInmuebleActionPerformed
 
@@ -469,12 +513,30 @@ public class PanelInmueble extends javax.swing.JPanel {
      cargarInmueblesFiltrados();
     }//GEN-LAST:event_rbTodosActionPerformed
 
+    private void btnLimpiarPropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarPropActionPerformed
+        
+        cbPropietarios.setSelectedIndex(-1);
+    }//GEN-LAST:event_btnLimpiarPropActionPerformed
+
+    private void btnLimpiarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarTipoActionPerformed
+        
+        cbTipoInmueble.setSelectedIndex(-1);
+    }//GEN-LAST:event_btnLimpiarTipoActionPerformed
+
+    private void btnLimpiarPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarPrecioActionPerformed
+        
+        cbPrecio.setSelectedIndex(-1);
+    }//GEN-LAST:event_btnLimpiarPrecioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirInmueble;
     public javax.swing.JButton btnEliminarInmueble;
     private javax.swing.JButton btnInmuebleNuevo;
-    public static javax.swing.JComboBox<Integer> cbPrecio;
+    public javax.swing.JButton btnLimpiarPrecio;
+    public javax.swing.JButton btnLimpiarProp;
+    public javax.swing.JButton btnLimpiarTipo;
+    public static javax.swing.JComboBox<Object> cbPrecio;
     public static javax.swing.JComboBox<Propietario> cbPropietarios;
     public static javax.swing.JComboBox<TipoInmueble> cbTipoInmueble;
     private javax.swing.ButtonGroup grpbotonesgrilla;
