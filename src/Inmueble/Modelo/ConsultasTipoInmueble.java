@@ -151,7 +151,7 @@ public boolean ObtenerTiposInmueble(ArrayList<TipoInmueble> tiposinmueble){
         PreparedStatement ps = null;
         ResultSet rs= null;
         Connection con = conexion();
-        String sql = "SELECT * FROM tipo_inmueble"; 
+        String sql = "SELECT * FROM tipo_inmueble ORDER BY tipo_inmueble"; 
         try {
             ps=con.prepareStatement(sql);
             rs=ps.executeQuery();

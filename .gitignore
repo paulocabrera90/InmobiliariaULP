@@ -2,5 +2,9 @@
 /InmoULP/nbproject/private/
 /nbproject/private/
 /build/classes/
+<<<<<<< HEAD
 /dist/
+=======
+/dist
+>>>>>>> 794fef198060ecb4a4041efa02032c087936fe6e
 .gitignore/

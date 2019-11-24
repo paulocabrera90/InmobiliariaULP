@@ -44,7 +44,6 @@ public class FormInmueble extends javax.swing.JFrame {
         cboTipo_inm = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtDniPropietario = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -54,10 +53,11 @@ public class FormInmueble extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         rbDisponible = new javax.swing.JRadioButton();
         rbNodisponible = new javax.swing.JRadioButton();
+        cbDnipropietarios = new javax.swing.JComboBox<>();
 
         jRadioButton2.setText("Disponible");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnBorrar.setText("Borrar");
 
@@ -118,9 +118,9 @@ public class FormInmueble extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtID_inmueble)
-                                    .addComponent(txtDniPropietario)
                                     .addComponent(txtDireccion)
-                                    .addComponent(txtSuperficie, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtSuperficie, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                                    .addComponent(cbDnipropietarios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -164,12 +164,13 @@ public class FormInmueble extends javax.swing.JFrame {
                             .addComponent(jLabel8)
                             .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDniPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6)
-                    .addComponent(rbDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rbNodisponible))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel6)
+                        .addComponent(rbDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rbNodisponible))
+                    .addComponent(cbDnipropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -235,6 +236,7 @@ public class FormInmueble extends javax.swing.JFrame {
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnModificar;
+    public javax.swing.JComboBox<Integer> cbDnipropietarios;
     public javax.swing.JComboBox<TipoInmueble> cboTipo_inm;
     private javax.swing.ButtonGroup dispnodisp;
     private javax.swing.JLabel jLabel1;
@@ -249,7 +251,6 @@ public class FormInmueble extends javax.swing.JFrame {
     public javax.swing.JRadioButton rbDisponible;
     public javax.swing.JRadioButton rbNodisponible;
     public javax.swing.JTextField txtDireccion;
-    public javax.swing.JTextField txtDniPropietario;
     public javax.swing.JTextField txtID_inmueble;
     public javax.swing.JTextField txtPrecio;
     public javax.swing.JTextField txtSuperficie;

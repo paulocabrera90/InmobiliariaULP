@@ -312,9 +312,11 @@ public class fromMenu extends javax.swing.JFrame {
              i = JOptionPane.showConfirmDialog(this,"¿Realmente desea eliminar el inquilino seleccionado?","Confirmar Eliminación",JOptionPane.YES_NO_OPTION);
             if(i==0)
              {              
-           cdInquilino.Borrar(inquilino);
+           if(cdInquilino.Borrar(inquilino))
+           {
            JOptionPane.showMessageDialog(null, "Se elimino inquilino", "Info", JOptionPane.WARNING_MESSAGE);
            PanelInquilino.cargarInquilinos();
+           } else JOptionPane.showMessageDialog(null,"No se pudo eliminar inquilino","Info",JOptionPane.WARNING_MESSAGE);
              }
             }
            }

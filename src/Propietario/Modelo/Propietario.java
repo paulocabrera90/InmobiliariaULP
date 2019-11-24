@@ -50,7 +50,9 @@ public class Propietario {
     public void setTelefono_propietario(String telefono_propietario) {
         this.telefono_propietario = telefono_propietario;
     }
-    
+    public String toString(){
+        return this.nombre_propietario+" "+this.apellido_propietario;
+    }
     
     
     

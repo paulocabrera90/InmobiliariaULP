@@ -502,9 +502,11 @@ public class panelPropietarioList extends javax.swing.JPanel {
              i = JOptionPane.showConfirmDialog(this,"¿Realmente desea eliminar el  propietario seleccionado?","Confirmar Eliminación",JOptionPane.YES_NO_OPTION);
             if(i==0)
              {              
-           cdPropietario.Borrar( propietario);
+           if(cdPropietario.Borrar( propietario))
+           {
            JOptionPane.showMessageDialog(null, "Se elimino  propietario", "Info", JOptionPane.WARNING_MESSAGE);
            panelPropietarioList.cargarPropietarios();
+           } else JOptionPane.showMessageDialog(null, "No se pudo eliminar propietario");
              }
             }
              }
