@@ -5,6 +5,7 @@
  */
 package Propietario.Modelo;
 
+import Conexion.*;
 import Inquilino.Modelo.Inquilino;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,10 +20,12 @@ import java.util.List;
  */
 public class ConsultasPropietario extends Conexion{
     
+     private Connection con = conexion();
+     private PreparedStatement ps = null;
+     
+     
 public boolean Guardar(Propietario propi){
         
-        PreparedStatement ps=null;
-        Connection con = conexion();
         
         String sql = "INSERT INTO propietario (dni_propietario,nombre_propietario,apellido_propietario,domicilio_propietario,telefono_propietario) VALUES (?,?,?,?,?);"; 
         
@@ -35,6 +38,7 @@ public boolean Guardar(Propietario propi){
             ps.setString(5,propi.getTelefono_propietario());
            
             ps.execute();
+             ps.close();
             return true;
             
             
@@ -56,8 +60,8 @@ public boolean Guardar(Propietario propi){
  
 public boolean Modificar(Propietario propi){
         
-        PreparedStatement ps=null;
-        Connection con = conexion();
+        //PreparedStatement ps=null;
+        //Connection con = conexion();
         
         String sql = "UPDATE propietario SET nombre_propietario=?,apellido_propietario=?,domicilio_propietario=?,telefono_propietario=?  WHERE dni_propietario=? "; 
         
@@ -91,8 +95,8 @@ public boolean Modificar(Propietario propi){
       
 public boolean Borrar(Propietario propi){
         
-        PreparedStatement ps=null;
-        Connection con = conexion();
+      ////  PreparedStatement ps=null;
+      //  Connection con = conexion();
         
         String sql = "DELETE FROM  propietario WHERE dni_propietario=?"; 
         
@@ -103,6 +107,7 @@ public boolean Borrar(Propietario propi){
             
            
             ps.execute();
+             ps.close();
             return true;
             
             
@@ -124,9 +129,9 @@ public boolean Borrar(Propietario propi){
       
 public boolean Buscar(Propietario propi){
         
-        PreparedStatement ps = null;
+        
         ResultSet rs= null;
-        Connection con = conexion();
+      //  Connection con = conexion();
         
         String sql = "SELECT * FROM propietario WHERE dni_propietario=?"; 
         
@@ -144,6 +149,7 @@ public boolean Buscar(Propietario propi){
                 return true;
                 
             }
+             ps.close();
             return false; 
         }
         catch(SQLException e){
@@ -163,21 +169,16 @@ public boolean Buscar(Propietario propi){
 
 public boolean obtenerPropietarios(List <Propietario> propietarios){
         new ArrayList<Propietario>();
-         PreparedStatement ps = null;
+      //   PreparedStatement ps = null;
        ResultSet rs= null;
-        Connection con = conexion();
+     //   Connection con = conexion();
           try {
             
             
             String sql= "SELECT * FROM propietario ORDER BY apellido_propietario;";
              ps= con.prepareStatement(sql);
              rs= ps.executeQuery();
-            Propietario propietario;// = new Inquilino();
-                      
-           // ConsultasPropietario consultapropietario=new ConsultasPropietario();
-           
-          
-            
+            Propietario propietario;//
             while(rs.next()){
             propietario= new Propietario();
               propietario.setDni_propietario(rs.getInt("dni_propietario"));
@@ -201,12 +202,12 @@ public boolean obtenerPropietarios(List <Propietario> propietarios){
 
 public Propietario buscarPropietarioXNombre(String nombre) {
        
-     
+     //   Connection con = conexion();
        Propietario propietario= null ;
         try{
         String sql = "SELECT * FROM propietario WHERE nombre_propietario LIKE ?;";
        // String sql ="SELECT * FROM alumno WHERE id_alumno = ? or nombre LIKE' %?%'or dni LIKE '%?%';";
-        PreparedStatement ps = con.prepareStatement(sql);//, Statement.RETURN_GENERATED_KEYS);
+         ps = con.prepareStatement(sql); //, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, "%"+nombre+"%");  
       //  preparedStatement.setString(1, "%" + DT + "%");
         ResultSet rs=  ps.executeQuery();
@@ -238,13 +239,14 @@ public List <Propietario>  busquedaXNomApeDniP(StringBuffer query) {
        List <Propietario> propietarios= new ArrayList<Propietario>();
        //  PreparedStatement ps = null;
        //ResultSet rs= null;
-        Connection con = conexion();
+      //  Connection con = conexion();
      
         Propietario propietario= null ;
         try{
         String sql = query.toString() ;
        // String sql ="SELECT * FROM alumno WHERE id_alumno = ? or nombre LIKE' %?%'or dni LIKE '%?%';";
-        PreparedStatement ps = con.prepareStatement(sql);//, Statement.RETURN_GENERATED_KEYS);
+       // PreparedStatement 
+                ps = con.prepareStatement(sql);//, Statement.RETURN_GENERATED_KEYS);
        // ps.setString(1, "%"+nombre+"%");  
       //  preparedStatement.setString(1, "%" + DT + "%");
         ResultSet rs=  ps.executeQuery();

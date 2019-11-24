@@ -14,17 +14,17 @@ import java.sql.Date;
 public class Contrato {
     private int id_contrato;
     private int id_inmueble;
-    private int id_inquilino;
+    private int dni_inquilino;
     private int id_estado_contrato;
     private double monto;
     private short vigente;
     private Date fecha_ini;
     private Date fecha_fin;
 
-    public Contrato(int id_contrato, int id_inmueble, int id_inquilino, int id_estado_contrato, double monto, short vigente, Date fecha_ini, Date fecha_fin) {
+    public Contrato(int id_contrato, int id_inmueble, int dni_inquilino, int id_estado_contrato, double monto, short vigente, Date fecha_ini, Date fecha_fin) {
         this.id_contrato = id_contrato;
         this.id_inmueble = id_inmueble;
-        this.id_inquilino = id_inquilino;
+        this.dni_inquilino = dni_inquilino;
         this.id_estado_contrato = id_estado_contrato;
         this.monto = monto;
         this.vigente = vigente;
@@ -35,7 +35,7 @@ public class Contrato {
     public Contrato() {
         this.id_contrato = -1;
         this.id_inmueble = -1;
-        this.id_inquilino = -1;
+        this.dni_inquilino = -1;
         this.id_estado_contrato = -1;
         this.monto = -1;
         this.vigente = -1;
@@ -59,12 +59,12 @@ public class Contrato {
         this.id_inmueble = id_inmueble;
     }
 
-    public int getId_inquilino() {
-        return id_inquilino;
+    public int getDni_inquilino() {
+        return dni_inquilino;
     }
 
-    public void setId_inquilino(int id_inquilino) {
-        this.id_inquilino = id_inquilino;
+    public void setDni_inquilino(int dni_inquilino) {
+        this.dni_inquilino = dni_inquilino;
     }
 
     public int getId_estado_contrato() {

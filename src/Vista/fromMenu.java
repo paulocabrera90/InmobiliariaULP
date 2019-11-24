@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import Contrato.Controlador.*;
+import Contrato.Modelo.*;
 import Inmueble.Modelo.ConsultasInmueble;
 import Inmueble.Controlador.CrlInmueble;
 import Vista.Inmueble.FormInmueble;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import Inquilino.Modelo.ConsultasInquilno;
 import Inquilino.Controlador.CtrInquilino;
+import Vista.Contrato.FromContrato;
 import Vista.Inquilino.PanelInquilino;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -59,6 +62,8 @@ public class fromMenu extends javax.swing.JFrame {
 
         jTabbedPaneMenu = new javax.swing.JTabbedPane();
         jPanelContrato = new javax.swing.JPanel();
+        panelContratoList1 = new Vista.Contrato.PanelContratoList();
+        jButtonNuevoContr = new javax.swing.JButton();
         jPanelInquilino = new javax.swing.JPanel();
         jbtnNuevoInquilino = new javax.swing.JButton();
         jbtnAbrirInquilino = new javax.swing.JButton();
@@ -80,16 +85,35 @@ public class fromMenu extends javax.swing.JFrame {
             }
         });
 
+        jButtonNuevoContr.setLabel("Nuevo");
+        jButtonNuevoContr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNuevoContrActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelContratoLayout = new javax.swing.GroupLayout(jPanelContrato);
         jPanelContrato.setLayout(jPanelContratoLayout);
         jPanelContratoLayout.setHorizontalGroup(
             jPanelContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1213, Short.MAX_VALUE)
+            .addGroup(jPanelContratoLayout.createSequentialGroup()
+                .addComponent(panelContratoList1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 99, Short.MAX_VALUE))
+            .addGroup(jPanelContratoLayout.createSequentialGroup()
+                .addGap(359, 359, 359)
+                .addComponent(jButtonNuevoContr)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelContratoLayout.setVerticalGroup(
             jPanelContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 604, Short.MAX_VALUE)
+            .addGroup(jPanelContratoLayout.createSequentialGroup()
+                .addComponent(panelContratoList1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonNuevoContr)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jButtonNuevoContr.getAccessibleContext().setAccessibleName("jButtonNuevoContr");
 
         jTabbedPaneMenu.addTab("Contrato", jPanelContrato);
 
@@ -136,7 +160,7 @@ public class fromMenu extends javax.swing.JFrame {
                     .addGroup(jPanelInquilinoLayout.createSequentialGroup()
                         .addGap(9, 9, 9)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelInquilinoLayout.setVerticalGroup(
             jPanelInquilinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +195,7 @@ public class fromMenu extends javax.swing.JFrame {
             jPanelPropietarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPropietarioLayout.createSequentialGroup()
                 .addComponent(panelPropietarioList1, javax.swing.GroupLayout.PREFERRED_SIZE, 913, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1))
         );
         jPanelPropietarioLayout.setVerticalGroup(
@@ -182,7 +206,7 @@ public class fromMenu extends javax.swing.JFrame {
             .addGroup(jPanelPropietarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelPropietarioList1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPaneMenu.addTab("Propietario", jPanelPropietario);
@@ -193,14 +217,14 @@ public class fromMenu extends javax.swing.JFrame {
             jPanelInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInmuebleLayout.createSequentialGroup()
                 .addComponent(panelInmueble1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 546, Short.MAX_VALUE))
+                .addGap(0, 186, Short.MAX_VALUE))
         );
         jPanelInmuebleLayout.setVerticalGroup(
             jPanelInmuebleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInmuebleLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelInmueble1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPaneMenu.addTab("Inmueble", jPanelInmueble);
@@ -209,13 +233,14 @@ public class fromMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPaneMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 1218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTabbedPaneMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 858, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneMenu)
+            .addComponent(jTabbedPaneMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 376, Short.MAX_VALUE)
         );
 
         jTabbedPaneMenu.getAccessibleContext().setAccessibleName("Menu");
@@ -304,6 +329,20 @@ public class fromMenu extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    private void jButtonNuevoContrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoContrActionPerformed
+        // TODO add your handling code here:
+        Contrato cont = new Contrato();
+        ConsultaContrato podCont = new ConsultaContrato();
+        FromContrato frmCont = new FromContrato();
+
+        CtrlContrato ctrl = new CtrlContrato(cont,podCont,frmCont);
+        ctrl.iniciar();
+        this.setEnabled(false);
+        //-----------------        
+        frmCont.setVisible(true);
+        
+    }//GEN-LAST:event_jButtonNuevoContrActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -362,6 +401,7 @@ public class fromMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonNuevoContr;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanelContrato;
@@ -372,6 +412,7 @@ public class fromMenu extends javax.swing.JFrame {
     private javax.swing.JButton jbtnAbrirInquilino;
     private javax.swing.JButton jbtnBorrarInquilino;
     private javax.swing.JButton jbtnNuevoInquilino;
+    private Vista.Contrato.PanelContratoList panelContratoList1;
     private Vista.Inmueble.PanelInmueble panelInmueble1;
     private Vista.Inquilino.PanelInquilino panelInquilino1;
     private Vista.Propietario.panelPropietarioList panelPropietarioList1;

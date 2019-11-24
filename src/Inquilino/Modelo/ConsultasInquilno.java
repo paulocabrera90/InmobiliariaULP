@@ -7,7 +7,7 @@ package Inquilino.Modelo;
 
 import Propietario.Modelo.Propietario;
 import Inquilino.Modelo.Inquilino;
-import Inquilino.Modelo.Conexion;
+import Conexion.Conexion;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -226,12 +226,13 @@ public boolean Buscar(Inquilino inquilino){
  
    public Inquilino buscarInquilinoXNombre(String nombre) {
        
-     
+        PreparedStatement ps = null;
         Inquilino inquilino= null ;
+        Connection con = conexion();
         try{
         String sql = "SELECT * FROM inquilino WHERE nombre_inquilino LIKE ?;";
        // String sql ="SELECT * FROM alumno WHERE id_alumno = ? or nombre LIKE' %?%'or dni LIKE '%?%';";
-        PreparedStatement ps = con.prepareStatement(sql);//, Statement.RETURN_GENERATED_KEYS);
+          ps= con.prepareStatement(sql); //, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, "%"+nombre+"%");  
       //  preparedStatement.setString(1, "%" + DT + "%");
         ResultSet rs=  ps.executeQuery();

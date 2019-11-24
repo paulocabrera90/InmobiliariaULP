@@ -5,12 +5,15 @@
  */
 package Vista.Contrato;
 
-import Contrato.Modelo.Conexion;
+import Conexion.Conexion;
+import Contrato.Modelo.ConsultaContrato;
+import Contrato.Modelo.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,6 +21,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Usuario
  */
 public class PanelContratoList extends javax.swing.JPanel {
+    
+    public static DefaultTableModel modeloContrato;
+    private static ConsultaContrato consultaContrato=new ConsultaContrato();
+    private static ArrayList<Contrato> contratos=new ArrayList<Contrato>();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,6 +74,32 @@ public class PanelContratoList extends javax.swing.JPanel {
         
         }
      }
+     
+     public void armarCabeceraPropietario(){
+         ArrayList<Object> columnasC=new ArrayList<Object>();
+            columnasC.add("Inquilino");
+            columnasC.add("Inmueble");
+            columnasC.add("Fecha Fin");
+        for(Object col:columnasC) 
+            modeloContrato.addColumn(col);
+            jTableContrato.setModel(modeloContrato);
+     }
+     
+     public static void cargarInmuebles(){
+        contratos.clear();
+        consultaContrato.obtenerContratos(contratos);
+        borrarInmuebles();
+        for(Contrato i:contratos){
+           // modeloContrato.addRow(new Object[] {i.getId_(),i.getTipo_inmueble(),i.getPropietario().getApellido_propietario(),i.getSuperficie(),i.getPrecio_base()});
+        }
+        
+    }
+     
+     public static void borrarInmuebles(){
+        int c = modeloContrato.getRowCount()-1;
+        for(int i=c;i>=0;i--)
+            modeloContrato.removeRow(i);
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
