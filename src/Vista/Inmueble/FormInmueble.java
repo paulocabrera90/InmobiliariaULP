@@ -7,6 +7,7 @@ package Vista.Inmueble;
 
 import Inmueble.Modelo.TipoInmueble;
 import Propietario.Modelo.Propietario;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -21,6 +22,8 @@ public class FormInmueble extends javax.swing.JFrame {
         initComponents();
         dispnodisp.add(rbDisponible);
         dispnodisp.add(rbNodisponible);
+        this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/Inmo2.png")).getImage()) ;// poner imagen a jframe
+        this.setLocationRelativeTo(null);
     }
     private void jtTxtsuperficie(java.awt.event.KeyEvent evt){
         char c=evt.getKeyChar();      
