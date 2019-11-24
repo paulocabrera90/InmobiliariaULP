@@ -85,7 +85,9 @@ public class CtrInquilino implements  ActionListener{
               JOptionPane.showMessageDialog(null, "Inquilino Guardado");
               limpiar();
                PanelInquilino.cargarInquilinos();
-              
+              int i = JOptionPane.showConfirmDialog(null,"¿Desea guardar mas inquilinos?",null,JOptionPane.YES_NO_OPTION);
+            if(i==0){}
+            else {frmI.dispose();}
               
           } else{ JOptionPane.showMessageDialog(null, "Error al Guardar");
               limpiar();
@@ -133,8 +135,10 @@ public class CtrInquilino implements  ActionListener{
               frmI.dispose();
               
               
-          } else{ JOptionPane.showMessageDialog(null, "Error al Borrar");
-              limpiar();
+          } else{  JOptionPane.showMessageDialog(null, "No se puede eliminar inquilino. Verifique si tiene un contrato realizado", "Info", JOptionPane.WARNING_MESSAGE);
+              //limpiar();
+              //frmI.dispose();
+              
             }
          }
       
