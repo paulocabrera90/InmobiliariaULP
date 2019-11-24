@@ -35,7 +35,12 @@ public class PanelInmueble extends javax.swing.JPanel {
     
     public PanelInmueble() {
         initComponents();
-        modeloinmuebles=new DefaultTableModel();
+        modeloinmuebles=new DefaultTableModel(){
+             @Override
+	 public boolean isCellEditable(int row, int column) {
+         return false;
+	}
+        };
         armarCabeceraInmuebles();
         grpbotonesgrilla.add(rbDisponiblegrilla);
         grpbotonesgrilla.add(rbNodisponiblegrilla);
@@ -48,7 +53,7 @@ public class PanelInmueble extends javax.swing.JPanel {
         this.cbPrecio.setSelectedIndex(-1);
         this.cbTipoInmueble.setSelectedIndex(-1);
         cargarInmueblesFiltrados();
-  
+        
     }
     public void armarCabeceraInmuebles(){
         ArrayList<Object> columnasi=new ArrayList<Object>();
