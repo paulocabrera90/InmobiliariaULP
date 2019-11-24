@@ -19,6 +19,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -64,7 +67,7 @@ public class CtrlContrato  implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
          if (e.getSource()==frmCon.jButtonBuscarInmueble){
-               Boolean flagCerrar = false;
+               //Boolean flagCerrar = false;
                frmCon.enable(false);
                tableroBuscarInmueble.setLocation(0, 0);
                tableroBuscarInmueble.setVisible(true);
@@ -80,17 +83,24 @@ public class CtrlContrato  implements ActionListener{
          }
          if (e.getSource()==frmCon.jButtonGuardar){
             try{
-                    con.setId_contrato(Integer.parseInt(frmCon.txtID_contrato.getText()));
-                    con.setId_estado_contrato( (int) frmCon.jComboBoxEstadoContrato.getSelectedItem() );
+                  //  con.setId_contrato(Integer.parseInt(frmCon.txtID_contrato.getText()));
+                    con.setEstado_contrato(frmCon.jComboBoxEstadoContrato.getSelectedItem().toString());
                     con.setMonto(Double.parseDouble(frmCon.txtMonto.getText()));
-                    con.setFecha_ini((Date)frmCon.jDateChooserFecIni.getDate());
-                    con.setFecha_fin((Date)frmCon.jDateChooserFecFin.getDate());
+                    con.setId_inmueble(((Inmueble) frmCon.jComboBoxInmueble.getSelectedItem()).getId_inmueble());
+                    con.setDni_inquilino(((Inquilino) frmCon.jComboBoxInquilino.getSelectedItem()).getDni_inquilino());
+                    con.setFecha_ini(  frmCon.jDateChooserFecIni.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                    con.setFecha_fin(  frmCon.jDateChooserFecFin.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+//                    con.setFecha_ini( frmCon.jDateChooserFecIni.getDate().);
+//                    con.setFecha_fin( frmCon.jDateChooserFecFin.getDate());
+                    
+                    
           
                 if (consContr.Guardar(con)){
               
                     JOptionPane.showMessageDialog(null, "Contrato Guardado");
-                limpiar();
-              
+                    limpiar();
+                
+               LocalDate.parse( frmCon.jDateChooserFecIni.getDate().toString() ,DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                // panelPropietarioList.cargarPropietarios();
               
               

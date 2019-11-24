@@ -13,44 +13,47 @@ import Inquilino.Modelo.ConsultasInquilno;
 import Inquilino.Modelo.Inquilino;
 import Propietario.Modelo.ConsultasPropietario;
 import Propietario.Modelo.Propietario;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import Conexion.Conexion;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.time.LocalDate;
 /**
  *
  * @author Usuario
  */
-public class ConsultaContrato {
-    private Connection con = null;
+public class ConsultaContrato extends  Conexion {
+   
+    private Connection con = conexion();
     private PreparedStatement ps = null;
 
    public boolean Guardar(Contrato cont){
-        
-        
-        String sql = "INSERT INTO contrato (id_contrato, id_inmueble, dni_inquilno, estado_contrto, monto, fecha_ini, fecha_ini) VALUES (?,?,?,?,?,?,?);"; 
+       
+        String sql = "INSERT INTO contrato (id_inmueble, dni_inquilino, estado_contrato, monto, fecha_ini, fecha_fin) VALUES (?,?,?,?,?,?);"; 
         
          try {
             ps=con.prepareStatement(sql);
-            ps.setInt(1,cont.getId_contrato());
-            ps.setInt(2, cont.getId_inmueble());
-            ps.setInt(3, cont.getDni_inquilino());
-            ps.setInt(4, cont.getId_estado_contrato());
-            ps.setDouble(5,cont.getMonto());
-             ps.setDate(6,cont.getFecha_ini());
-            ps.setDate(7,cont.getFecha_fin());
+            //ps.setInt(1,cont.getId_contrato());
+            ps.setInt(1, cont.getId_inmueble());
+            ps.setInt(2, cont.getDni_inquilino());
+            ps.setString(3, cont.getEstado_contrato());
+            ps.setDouble(4,cont.getMonto());
+            ps.setDate(5, Date.valueOf(cont.getFecha_ini().toString()));
+            ps.setDate(6, Date.valueOf(cont.getFecha_fin().toString()));
             
             ps.execute();
-             ps.close();
+            
             return true;
             
             
         }
         catch(SQLException e){
-        System.err.println(e);
-        return false;
+                System.err.println(e);
+                return false;
         }finally{
             try {
                 con.close();
@@ -78,20 +81,19 @@ public class ConsultaContrato {
                 Inmueble inmueble = new Inmueble();
                 Inquilino inquilino = new Inquilino();
                 
-                inmueble.setId_inmueble(rs.getInt("dni_propietario"));
-                inquilino.setDni_inquilino(rs.getInt("id_tipo_inmueble"));
+                inmueble.setId_inmueble(rs.getInt("id_inmueble"));
+                inquilino.setDni_inquilino(rs.getInt("dni_inquilino"));
                 
                 consultasInmueble.Buscar(inmueble);
                 consultasInquilino.Buscar(inquilino);
                 
-                contrato.setId_inmueble(inmueble.getId_inmueble());
-                contrato.setDni_inquilino(inquilino.getDni_inquilino());
-                
+                contrato.setNombreInmueble(inmueble.getTipo_inmueble().getZona_inmueble() + " - " + inmueble.getDireccion_inmueble());
+                contrato.setNombreInquilino(inquilino.toString());
                 contrato.setId_contrato(rs.getInt("id_contrato"));
-                contrato.setId_estado_contrato(rs.getInt("estado_contrato"));
+                contrato.setEstado_contrato(rs.getString("estado_contrato"));
                 contrato.setMonto(rs.getDouble("monto"));
-                contrato.setFecha_ini(rs.getDate("fecha_ini"));
-                contrato.setFecha_fin(rs.getDate("fecha_fin")); 
+                contrato.setFecha_ini(rs.getDate("fecha_ini").toLocalDate());
+               contrato.setFecha_fin(rs.getDate("fecha_fin").toLocalDate()); 
                 contratos.add(contrato);
     
             }
@@ -112,10 +114,4 @@ public class ConsultaContrato {
         
     }
     
-     
-
-    private Connection conexion() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
- 
 }

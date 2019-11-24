@@ -66,11 +66,13 @@ public class FromContrato extends javax.swing.JFrame {
 
         jLabel1.setText("ID contrato:");
 
+        txtID_contrato.setEnabled(false);
+
         jLabel3.setText("Inquilino:");
 
         jLabel4.setText("Estado contrato:");
 
-        jComboBoxEstadoContrato.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2" }));
+        jComboBoxEstadoContrato.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "VIGENTE", "NO VIGENTE" }));
 
         jLabel5.setText("Monto:");
 

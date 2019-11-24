@@ -47,9 +47,6 @@ public class fromMenu extends javax.swing.JFrame {
         this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/Inmo2.png")).getImage()) ;// poner imagen a jframe
         modeloinmuebles=new DefaultTableModel();
 
-        
-        
-        
     }
  /**
      * This method is called from within the constructor to initialize the form.
