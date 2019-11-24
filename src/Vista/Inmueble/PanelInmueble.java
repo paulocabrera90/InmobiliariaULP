@@ -444,8 +444,8 @@ public class PanelInmueble extends javax.swing.JPanel {
               inmueble.setEstado_inmueble("No disponible");
             formulario.txtPrecio.setText(Double.toString(inmueble.getPrecio_base()));
             formulario.txtSuperficie.setText(Double.toString(inmueble.getSuperficie()));
-            formulario.cboTipo_inm.setSelectedItem(inmueble.getTipo_inmueble());
-            formulario.cbDnipropietarios.setSelectedItem(inmueble.getPropietario().getDni_propietario());
+            formulario.cboPropietarios.setSelectedItem(inmueble.getTipo_inmueble());
+            formulario.cboPropietarios.setSelectedItem(inmueble.getPropietario());
             
         }
     }//GEN-LAST:event_btnAbrirInmuebleActionPerformed

@@ -103,12 +103,10 @@ public boolean Borrar(int id){
         
         try {
             ps=con.prepareStatement(sql);
-            
             ps.setInt(1,id);
-            
-           
-            ps.execute();
+            if(ps.execute())
             return true;
+            else return false;
             
             
         }
