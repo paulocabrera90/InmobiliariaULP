@@ -104,11 +104,9 @@ public boolean Borrar(int id){
         try {
             ps=con.prepareStatement(sql);
             ps.setInt(1,id);
-            if(ps.execute())
+            ps.execute();
             return true;
-            else return false;
-            
-            
+
         }
         catch(SQLException e){
         System.err.println(e);

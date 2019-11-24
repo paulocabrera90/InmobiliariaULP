@@ -83,7 +83,7 @@ public class FormInmueble extends javax.swing.JFrame {
 
         btnLimpiar.setText("Limpiar");
 
-        jLabel4.setText("DNI propietario:");
+        jLabel4.setText("Propietario: ");
 
         jLabel5.setText("Dirección:");
 
@@ -104,6 +104,7 @@ public class FormInmueble extends javax.swing.JFrame {
 
         btnGuardar.setText("Guardar");
 
+        txtID_inmueble.setEnabled(false);
         txtID_inmueble.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtID_inmuebleKeyTyped(evt);
@@ -118,6 +119,12 @@ public class FormInmueble extends javax.swing.JFrame {
         rbNodisponible.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbNodisponibleActionPerformed(evt);
+            }
+        });
+
+        cboPropietarios.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cboPropietariosKeyTyped(evt);
             }
         });
 
@@ -239,6 +246,8 @@ public class FormInmueble extends javax.swing.JFrame {
               getToolkit().beep();
               evt.consume();
           }
+        
+            
     }//GEN-LAST:event_txtPrecioKeyTyped
 
     private void txtID_inmuebleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtID_inmuebleKeyTyped
@@ -249,6 +258,10 @@ public class FormInmueble extends javax.swing.JFrame {
               evt.consume();
           }
     }//GEN-LAST:event_txtID_inmuebleKeyTyped
+
+    private void cboPropietariosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboPropietariosKeyTyped
+        
+    }//GEN-LAST:event_cboPropietariosKeyTyped
 
     /**
      * @param args the command line arguments

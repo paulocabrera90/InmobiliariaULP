@@ -67,7 +67,7 @@ public class CrlInmueble implements ActionListener{
           propietario.setDni_propietario(((Propietario)formulario.cboPropietarios.getSelectedItem()).getDni_propietario());
           consultaprop.Buscar(propietario);
           inmueble.setPropietario(propietario);
-          inmueble.setTipo_inmueble((TipoInmueble) formulario.cboPropietarios.getSelectedItem());
+          inmueble.setTipo_inmueble((TipoInmueble) formulario.cboTipo_inm.getSelectedItem());
           inmueble.setDireccion_inmueble(formulario.txtDireccion.getText());
           if(formulario.rbDisponible.isSelected())
             inmueble.setEstado_inmueble("Disponible");
@@ -75,10 +75,7 @@ public class CrlInmueble implements ActionListener{
               inmueble.setEstado_inmueble("No disponible");
           inmueble.setPrecio_base(Double.parseDouble(formulario.txtPrecio.getText()));
           inmueble.setSuperficie(Double.parseDouble(formulario.txtSuperficie.getText()));
-          
-          
           if (consulta.GuardarInmueble(inmueble)){
-              
               JOptionPane.showMessageDialog(null, "Inmueble guardado");
               limpiar();
               PanelInmueble.cargarInmueblesFiltrados();
@@ -94,7 +91,7 @@ public class CrlInmueble implements ActionListener{
           propietario.setDni_propietario(((Propietario)formulario.cboPropietarios.getSelectedItem()).getDni_propietario());
           consultaprop.Buscar(propietario);
           inmueble.setPropietario(propietario);
-          inmueble.setTipo_inmueble((TipoInmueble) formulario.cboPropietarios.getSelectedItem());
+          inmueble.setTipo_inmueble((TipoInmueble) formulario.cboTipo_inm.getSelectedItem()); 
           inmueble.setDireccion_inmueble(formulario.txtDireccion.getText());
           if(formulario.rbDisponible.isSelected())
             inmueble.setEstado_inmueble("Disponible");
@@ -127,7 +124,7 @@ public class CrlInmueble implements ActionListener{
               
               
           } else{ JOptionPane.showMessageDialog(null, "Error al borrar");
-              limpiar();
+              
       }
       
       }
@@ -143,10 +140,9 @@ public class CrlInmueble implements ActionListener{
       formulario.txtID_inmueble.setText("");
       formulario.txtDireccion.setText("");
       formulario.cboPropietarios.setSelectedIndex(-1);
+      formulario.cboTipo_inm.setSelectedIndex(-1);
       formulario.txtPrecio.setText("");
-      formulario.txtSuperficie.setText("");
- 
-      
+      formulario.txtSuperficie.setText("");    
   }
   public void cargarTipoInmueble(){
       consultatipoinmueble.ObtenerTiposInmueble(tiposinmueble);
