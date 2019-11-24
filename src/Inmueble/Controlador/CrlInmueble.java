@@ -45,7 +45,6 @@ public class CrlInmueble implements ActionListener{
         this.formulario.btnGuardar.addActionListener(this);
         this.formulario.btnModificar.addActionListener(this);
         this.formulario.btnBorrar.addActionListener(this);
-        this.formulario.btnBuscar.addActionListener(this);
         this.formulario.btnLimpiar.addActionListener(this);
         
     
@@ -57,18 +56,18 @@ public class CrlInmueble implements ActionListener{
       cargarTipoInmueble();
       cargarDniPropietario();
       formulario.rbDisponible.setSelected(true);
-      
-      
+      formulario.cboPropietarios.setSelectedIndex(-1);
+      formulario.cboTipo_inm.setSelectedIndex(-1);
   }
  
     @Override
   public void actionPerformed(ActionEvent e){
       
       if (e.getSource()==formulario.btnGuardar){
-          propietario.setDni_propietario(Integer.parseInt(formulario.cbDnipropietarios.getSelectedItem().toString()));
+          propietario.setDni_propietario(((Propietario)formulario.cboPropietarios.getSelectedItem()).getDni_propietario());
           consultaprop.Buscar(propietario);
           inmueble.setPropietario(propietario);
-          inmueble.setTipo_inmueble((TipoInmueble) formulario.cboTipo_inm.getSelectedItem());
+          inmueble.setTipo_inmueble((TipoInmueble) formulario.cboPropietarios.getSelectedItem());
           inmueble.setDireccion_inmueble(formulario.txtDireccion.getText());
           if(formulario.rbDisponible.isSelected())
             inmueble.setEstado_inmueble("Disponible");
@@ -92,10 +91,10 @@ public class CrlInmueble implements ActionListener{
   }
       
       if (e.getSource()==formulario.btnModificar){
-          propietario.setDni_propietario(Integer.parseInt(formulario.cbDnipropietarios.getSelectedItem().toString()));
+          propietario.setDni_propietario(((Propietario)formulario.cboPropietarios.getSelectedItem()).getDni_propietario());
           consultaprop.Buscar(propietario);
           inmueble.setPropietario(propietario);
-          inmueble.setTipo_inmueble((TipoInmueble) formulario.cboTipo_inm.getSelectedItem());
+          inmueble.setTipo_inmueble((TipoInmueble) formulario.cboPropietarios.getSelectedItem());
           inmueble.setDireccion_inmueble(formulario.txtDireccion.getText());
           if(formulario.rbDisponible.isSelected())
             inmueble.setEstado_inmueble("Disponible");
@@ -133,40 +132,17 @@ public class CrlInmueble implements ActionListener{
       
       }
       
-      if (e.getSource()==formulario.btnBuscar){
+     
           
-          inmueble.setId_inmueble(Integer.parseInt(formulario.txtID_inmueble.getText()));
-        
-          
-          if (consulta.Buscar(inmueble)){
-              
-              formulario.txtDireccion.setText(inmueble.getDireccion_inmueble());
-              formulario.cbDnipropietarios.setSelectedItem(inmueble.getPropietario().getDni_propietario());
-              if(inmueble.getEstado_inmueble()=="Disponible")
-                formulario.rbDisponible.setSelected(true);
-              else 
-                  formulario.rbNodisponible.setSelected(true);
-              formulario.txtPrecio.setText(Double.toString(inmueble.getPrecio_base()));
-              formulario.txtSuperficie.setText(Double.toString(inmueble.getSuperficie()));
-              formulario.cboTipo_inm.setSelectedItem(inmueble.getTipo_inmueble().getId_tipo_inmueble());             
-  
-          } else{ JOptionPane.showMessageDialog(null, "No se encontró el inmueble");
-              limpiar();
-      }              
-      
-      }
        if(e.getSource()== formulario.btnLimpiar){
               limpiar();
        }
-    
 
-  
- 
   }
   public void limpiar(){
-      
+      formulario.txtID_inmueble.setText("");
       formulario.txtDireccion.setText("");
-      formulario.cbDnipropietarios.setSelectedIndex(-1);
+      formulario.cboPropietarios.setSelectedIndex(-1);
       formulario.txtPrecio.setText("");
       formulario.txtSuperficie.setText("");
  
@@ -180,7 +156,8 @@ public class CrlInmueble implements ActionListener{
   public void cargarDniPropietario(){
       consultaprop.obtenerPropietarios(propietarios);
       for(Propietario prop:propietarios)
-          formulario.cbDnipropietarios.addItem(prop.getDni_propietario());
+          formulario.cboPropietarios.addItem(prop);
+      
   }
   /*public void cargarPropietarios(){
       consultaprop
