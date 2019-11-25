@@ -5,7 +5,7 @@
  */
 package Inmueble.Modelo;
 
-import Propietario.Modelo.Conexion;
+import Conexion.Conexion;
 import Propietario.Modelo.ConsultasPropietario;
 import Propietario.Modelo.Propietario;
 import com.mysql.jdbc.Statement;

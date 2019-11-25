@@ -13,12 +13,12 @@ import java.awt.event.WindowListener;
  *
  * @author Usuario
  */
-public class FromBuscarInmueble extends javax.swing.JFrame {
+public class FromBuscarInquilino extends javax.swing.JFrame {
     
     private Inquilino inqui = new Inquilino();
     private Inmueble inmueble = new Inmueble();
    
-    public FromBuscarInmueble() {
+    public FromBuscarInquilino() {
         initComponents();
     }
 
@@ -40,7 +40,7 @@ public class FromBuscarInmueble extends javax.swing.JFrame {
         jButtonLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setName("frameBusquedaInmueble"); // NOI18N
+        setName("frameBusquedaInquilino"); // NOI18N
 
         jTableContrato.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -168,11 +168,6 @@ public class FromBuscarInmueble extends javax.swing.JFrame {
         
      
     }
-   
-        
-    
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jButtonBuscar;
     public javax.swing.JButton jButtonCancelar;

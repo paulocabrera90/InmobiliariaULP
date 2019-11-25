@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import Contrato.Controlador.*;
+import Contrato.Modelo.*;
 import Inmueble.Modelo.ConsultasInmueble;
 import Inmueble.Controlador.CrlInmueble;
 import Vista.Inmueble.FormInmueble;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import Inquilino.Modelo.ConsultasInquilno;
 import Inquilino.Controlador.CtrInquilino;
+import Vista.Contrato.FromContrato;
 import Vista.Inquilino.PanelInquilino;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
@@ -63,6 +66,8 @@ public class fromMenu extends javax.swing.JFrame {
 
         jTabbedPaneMenu = new javax.swing.JTabbedPane();
         jPanelContrato = new javax.swing.JPanel();
+        panelContratoList1 = new Vista.Contrato.PanelContratoList();
+        jButtonContrato = new javax.swing.JButton();
         jPanelPropietario = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -86,15 +91,35 @@ public class fromMenu extends javax.swing.JFrame {
             }
         });
 
+        jButtonContrato.setText("Nuevo");
+        jButtonContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonContratoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelContratoLayout = new javax.swing.GroupLayout(jPanelContrato);
         jPanelContrato.setLayout(jPanelContratoLayout);
         jPanelContratoLayout.setHorizontalGroup(
             jPanelContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1213, Short.MAX_VALUE)
+            .addGroup(jPanelContratoLayout.createSequentialGroup()
+                .addGroup(jPanelContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelContratoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panelContratoList1, javax.swing.GroupLayout.PREFERRED_SIZE, 1155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelContratoLayout.createSequentialGroup()
+                        .addGap(408, 408, 408)
+                        .addComponent(jButtonContrato)))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanelContratoLayout.setVerticalGroup(
             jPanelContratoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 604, Short.MAX_VALUE)
+            .addGroup(jPanelContratoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelContratoList1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonContrato)
+                .addContainerGap(222, Short.MAX_VALUE))
         );
 
         jTabbedPaneMenu.addTab("Contrato", jPanelContrato);
@@ -348,6 +373,19 @@ public class fromMenu extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_jSalirInqMouseClicked
 
+    private void jButtonContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonContratoActionPerformed
+        // TODO add your handling code here:
+         Contrato cont = new Contrato();
+        ConsultaContrato podCont = new ConsultaContrato();
+        FromContrato frmCont = new FromContrato();
+
+        CtrlContrato ctrl = new CtrlContrato(cont,podCont,frmCont);
+        ctrl.iniciar();
+        this.setEnabled(false);
+        //-----------------        
+        frmCont.setVisible(true);
+    }//GEN-LAST:event_jButtonContratoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -406,6 +444,7 @@ public class fromMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonContrato;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -418,6 +457,7 @@ public class fromMenu extends javax.swing.JFrame {
     private javax.swing.JButton jbtnAbrirInquilino;
     private javax.swing.JButton jbtnBorrarInquilino;
     private javax.swing.JButton jbtnNuevoInquilino;
+    private Vista.Contrato.PanelContratoList panelContratoList1;
     private Vista.Inmueble.PanelInmueble panelInmueble1;
     private Vista.Inquilino.PanelInquilino panelInquilino1;
     private Vista.Propietario.panelPropietarioList panelPropietarioList2;

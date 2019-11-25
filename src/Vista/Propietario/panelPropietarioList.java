@@ -9,7 +9,7 @@ import Inquilino.Controlador.CtrInquilino;
 import Inquilino.Modelo.ConsultasInquilno;
 import Inquilino.Modelo.Inquilino;
 import Propietario.Controlador.CtrPropietario;
-import Propietario.Modelo.Conexion;
+import Conexion.Conexion;
 import Propietario.Modelo.ConsultasPropietario;
 import Propietario.Modelo.Propietario;
 import Vista.Inquilino.PanelInquilino;
@@ -96,23 +96,27 @@ public class panelPropietarioList extends javax.swing.JPanel {
             columnasp.add("Apellido");
             columnasp.add("Domicilio");
             columnasp.add("Telefono");
-     for(Object col:columnasp) 
-            modeloPropietario.addColumn(col);
-        jTablePropietario.setModel(modeloPropietario);}
+        for(Object col:columnasp) 
+               modeloPropietario.addColumn(col);
+           jTablePropietario.setModel(modeloPropietario);
+     }
         
         
          public static void cargarPropietarios(){
-        propietarios.clear();
-      cdPropietario.obtenerPropietarios(propietarios);
-        borrarPropietarios();
-        for(Propietario pro:propietarios){
-            modeloPropietario.addRow(new Object[] {pro.getDni_propietario(),pro.getNombre_propietario(),pro.getApellido_propietario(),
-                pro.getDomicilio_propietario(),pro.getTelefono_propietario()});
-        }}
-              public static void borrarPropietarios(){
-        int c=modeloPropietario.getRowCount()-1;
-        for(int i=c;i>=0;i--)
-            modeloPropietario.removeRow(i);
+            propietarios.clear();
+            cdPropietario.obtenerPropietarios(propietarios);
+            borrarPropietarios();
+            for(Propietario pro:propietarios){
+                modeloPropietario.addRow(new Object[] {pro.getDni_propietario(),pro.getNombre_propietario(),pro.getApellido_propietario(),
+                    pro.getDomicilio_propietario(),pro.getTelefono_propietario()});
+            }
+         }
+         
+         
+       public static void borrarPropietarios(){
+            int c=modeloPropietario.getRowCount()-1;
+            for(int i=c;i>=0;i--)
+                modeloPropietario.removeRow(i);
     }
               
        public static Propietario  obtenerIPropietarioDeTabla(){
