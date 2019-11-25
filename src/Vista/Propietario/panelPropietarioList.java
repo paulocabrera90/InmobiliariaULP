@@ -171,26 +171,26 @@ public class panelPropietarioList extends javax.swing.JPanel {
 
         jTablePropietario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Dni", "Nombre", "Apellido"
+
             }
         ));
         jScrollPane1.setViewportView(jTablePropietario);
@@ -274,16 +274,20 @@ public class panelPropietarioList extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNombreB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtApellidoB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtApellidoB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtNombreB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtDNIB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscarB)
                     .addComponent(btnLimpiarB))
@@ -348,84 +352,6 @@ public class panelPropietarioList extends javax.swing.JPanel {
        
     }//GEN-LAST:event_btnAbrirPropietarioMouseClicked
 
-    private void btnBuscarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarBActionPerformed
-             List <Propietario> Propietariobus = new ArrayList<Propietario>() ;
-        ConsultasPropietario cdPropietario = new ConsultasPropietario();
-       
-       StringBuffer buffer = new StringBuffer( "SELECT * FROM propietario WHERE " );
-       
-       if ((txtNombreB.getText().length() < 1)
-           &&(txtApellidoB.getText().length() < 1) && ( txtDNIB.getText().length()<1))
-      {
-            borrarPropietarios();
-           cargarPropietarios();
-      }
-      else {
-       if ((txtNombreB.getText() != null && txtNombreB.getText().length() > 0)
-           &&( txtApellidoB.getText() != null && txtApellidoB.getText().length() > 0 ) && ( txtDNIB.getText() != null && txtDNIB.getText().length() > 0 ))
-       {
-           buffer.append("nombre_propietario LIKE '%"+txtNombreB.getText()+"%' AND apellido_propietario LIKE '%"+txtApellidoB.getText()+"%' AND dni_propietario LIKE '%"+txtDNIB.getText()+"%'");
-       }
-       else {
-            if ((txtNombreB.getText() != null &&txtNombreB.getText().length() > 0)
-           &&( txtApellidoB.getText() != null && txtApellidoB.getText().length() > 0 )){
-              buffer.append("nombre_propietario LIKE '%"+txtNombreB.getText()+"%' AND apellido_propietario LIKE '%"+txtApellidoB.getText()+"%'");  
-            } 
-            else {
-              if ((txtNombreB.getText() != null && txtNombreB.getText().length() > 0) && (txtDNIB.getText() != null && txtDNIB.getText().length() > 0 ))
-              {
-                  buffer.append("nombre_propietario LIKE '%"+txtNombreB.getText()+"%' AND dni_propietario LIKE '%"+txtDNIB.getText()+"%'");
-              } 
-              else{
-                  if((txtApellidoB.getText() != null && txtApellidoB.getText().length() > 0 ) && ( txtDNIB.getText() != null &&txtDNIB.getText().length() > 0 ))
-                  {
-                     buffer.append (" apellido_propietario LIKE '%"+txtApellidoB.getText()+"%' AND dni_propietario LIKE '%"+txtDNIB.getText()+"%'");
-                  }
-                  else {
-                      if( txtNombreB.getText() != null && txtNombreB.getText().length() > 0 ) 
-                      { //suponiendo que el parámetro fuera un String
-                      buffer.append( "nombre_propietario LIKE '%"+txtNombreB.getText()+"%'" );
-                      }
-                      else {
-                         if( txtApellidoB.getText() != null && txtApellidoB.getText().length() > 0 ) 
-                         { //suponiendo que el parámetro fuera un String
-                          buffer.append( "apellido_propietario LIKE '%"+ txtApellidoB.getText()+"%'");
-                          } 
-                          else {
-                             if(txtDNIB.getText() != null &&txtDNIB.getText().length() > 0 ) 
-                             { //suponiendo que el parámetro fuera un String
-                               buffer.append( "dni_propietario LIKE '%"+txtDNIB.getText()+"%'" );
-                             } 
-                             //else{
-                             ///    cargarInquilinos();
-                             //}
-                      }
-                   }
-                }
-              }
-            }
-             Propietariobus = cdPropietario.busquedaXNomApeDniP(buffer); //.(JtNombre_inqui.getText());
-             borrarPropietarios();
-            if (Propietariobus.isEmpty()){
-                JOptionPane.showMessageDialog(null, "No se encontraron resultados");
-            } else {
-             for(Propietario pro: Propietariobus){
-                modeloPropietario.addRow(new Object[] {pro.getDni_propietario(),pro.getNombre_propietario(),pro.getApellido_propietario(),
-                pro.getDomicilio_propietario(),pro.getTelefono_propietario()});
-              }
-            }
-       
-       
-    
-       
-       }
-       }             
-    }//GEN-LAST:event_btnBuscarBActionPerformed
-
-    private void txtNombreBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreBActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreBActionPerformed
-
     private void btnNuevoPropietarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNuevoPropietarioMouseClicked
         Propietario pod = new Propietario();
         ConsultasPropietario podP = new ConsultasPropietario ();
@@ -445,23 +371,6 @@ public class panelPropietarioList extends javax.swing.JPanel {
     private void btnNuevoPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoPropietarioActionPerformed
 
     }//GEN-LAST:event_btnNuevoPropietarioActionPerformed
-
-    private void btnLimpiarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarBActionPerformed
-       txtNombreB.setText("");
-        txtDNIB.setText("");
-        txtApellidoB.setText("");
-    }//GEN-LAST:event_btnLimpiarBActionPerformed
-
-    private void txtDNIBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDNIBActionPerformed
-        
-    }//GEN-LAST:event_txtDNIBActionPerformed
-
-    private void txtDNIBKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIBKeyTyped
-        char c=evt.getKeyChar();      
-          if(Character.isLetter(c)) {
-              getToolkit().beep();
-              evt.consume();
-    }//GEN-LAST:event_txtDNIBKeyTyped
     }
     private void btnAbrirPropietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirPropietarioActionPerformed
         Propietario propietario=new Propietario();
@@ -502,11 +411,103 @@ public class panelPropietarioList extends javax.swing.JPanel {
            {
            JOptionPane.showMessageDialog(null, "Se elimino  propietario", "Info", JOptionPane.WARNING_MESSAGE);
            panelPropietarioList.cargarPropietarios();
-           } else JOptionPane.showMessageDialog(null, "No se pudo eliminar propietario");
+           } else JOptionPane.showMessageDialog(null, "No se pudo eliminar propietario. Verifique si esta asociado a un inmueble");
              }
             }
              }
     }//GEN-LAST:event_btnBorrarPropietarioActionPerformed
+
+    private void btnLimpiarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarBActionPerformed
+        txtNombreB.setText("");
+        txtDNIB.setText("");
+        txtApellidoB.setText("");
+    }//GEN-LAST:event_btnLimpiarBActionPerformed
+
+    private void txtNombreBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreBActionPerformed
+
+    private void btnBuscarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarBActionPerformed
+        List <Propietario> Propietariobus = new ArrayList<Propietario>() ;
+        ConsultasPropietario cdPropietario = new ConsultasPropietario();
+
+        StringBuffer buffer = new StringBuffer( "SELECT * FROM propietario WHERE " );
+
+        if ((txtNombreB.getText().length() < 1)
+            &&(txtApellidoB.getText().length() < 1) && ( txtDNIB.getText().length()<1))
+        {
+            borrarPropietarios();
+            cargarPropietarios();
+        }
+        else {
+            if ((txtNombreB.getText() != null && txtNombreB.getText().length() > 0)
+                &&( txtApellidoB.getText() != null && txtApellidoB.getText().length() > 0 ) && ( txtDNIB.getText() != null && txtDNIB.getText().length() > 0 ))
+            {
+                buffer.append("nombre_propietario LIKE '%"+txtNombreB.getText()+"%' AND apellido_propietario LIKE '%"+txtApellidoB.getText()+"%' AND dni_propietario LIKE '%"+txtDNIB.getText()+"%'");
+            }
+            else {
+                if ((txtNombreB.getText() != null &&txtNombreB.getText().length() > 0)
+                    &&( txtApellidoB.getText() != null && txtApellidoB.getText().length() > 0 )){
+                    buffer.append("nombre_propietario LIKE '%"+txtNombreB.getText()+"%' AND apellido_propietario LIKE '%"+txtApellidoB.getText()+"%'");
+                }
+                else {
+                    if ((txtNombreB.getText() != null && txtNombreB.getText().length() > 0) && (txtDNIB.getText() != null && txtDNIB.getText().length() > 0 ))
+                    {
+                        buffer.append("nombre_propietario LIKE '%"+txtNombreB.getText()+"%' AND dni_propietario LIKE '%"+txtDNIB.getText()+"%'");
+                    }
+                    else{
+                        if((txtApellidoB.getText() != null && txtApellidoB.getText().length() > 0 ) && ( txtDNIB.getText() != null &&txtDNIB.getText().length() > 0 ))
+                        {
+                            buffer.append (" apellido_propietario LIKE '%"+txtApellidoB.getText()+"%' AND dni_propietario LIKE '%"+txtDNIB.getText()+"%'");
+                        }
+                        else {
+                            if( txtNombreB.getText() != null && txtNombreB.getText().length() > 0 )
+                            { //suponiendo que el parámetro fuera un String
+                                buffer.append( "nombre_propietario LIKE '%"+txtNombreB.getText()+"%'" );
+                            }
+                            else {
+                                if( txtApellidoB.getText() != null && txtApellidoB.getText().length() > 0 )
+                                { //suponiendo que el parámetro fuera un String
+                                    buffer.append( "apellido_propietario LIKE '%"+ txtApellidoB.getText()+"%'");
+                                }
+                                else {
+                                    if(txtDNIB.getText() != null &&txtDNIB.getText().length() > 0 )
+                                    { //suponiendo que el parámetro fuera un String
+                                        buffer.append( "dni_propietario LIKE '%"+txtDNIB.getText()+"%'" );
+                                    }
+                                    //else{
+                                        ///    cargarInquilinos();
+                                        //}
+                                }
+                            }
+                        }
+                    }
+                }
+                Propietariobus = cdPropietario.busquedaXNomApeDniP(buffer); //.(JtNombre_inqui.getText());
+                borrarPropietarios();
+                if (Propietariobus.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "No se encontraron resultados");
+                } else {
+                    for(Propietario pro: Propietariobus){
+                        modeloPropietario.addRow(new Object[] {pro.getDni_propietario(),pro.getNombre_propietario(),pro.getApellido_propietario(),
+                            pro.getDomicilio_propietario(),pro.getTelefono_propietario()});
+                }
+            }
+
+        }
+        }
+    }//GEN-LAST:event_btnBuscarBActionPerformed
+
+    private void txtDNIBKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIBKeyTyped
+        char c=evt.getKeyChar();
+        if(Character.isLetter(c)) {
+            getToolkit().beep();
+            evt.consume();
+    }//GEN-LAST:event_txtDNIBKeyTyped
+
+    private void txtDNIBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDNIBActionPerformed
+
+    }//GEN-LAST:event_txtDNIBActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -514,18 +515,18 @@ public class panelPropietarioList extends javax.swing.JPanel {
     private javax.swing.JButton btnAbrirPropietario1;
     private javax.swing.JButton btnBorrarPropietario;
     private javax.swing.JButton btnBorrarPropietario1;
-    public javax.swing.JButton btnBuscarB;
+    private javax.swing.JButton btnBuscarB;
     private javax.swing.JButton btnLimpiarB;
     private javax.swing.JButton btnNuevoPropietario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    public javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JTable jTablePropietario;
-    public javax.swing.JTextField txtApellidoB;
-    public javax.swing.JTextField txtDNIB;
-    public javax.swing.JTextField txtNombreB;
+    private javax.swing.JTextField txtApellidoB;
+    private javax.swing.JTextField txtDNIB;
+    private javax.swing.JTextField txtNombreB;
     // End of variables declaration//GEN-END:variables
 }

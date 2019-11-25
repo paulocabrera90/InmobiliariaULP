@@ -133,8 +133,10 @@ public class CtrInquilino implements  ActionListener{
               frmI.dispose();
               
               
-          } else{ JOptionPane.showMessageDialog(null, "Error al Borrar");
-              limpiar();
+          } else{
+              JOptionPane.showMessageDialog(null, "No se puede eliminar inquilino. Verifique si tiene un contrato realizado", "Info", JOptionPane.WARNING_MESSAGE);
+              //JOptionPane.showMessageDialog(null, "Error al Borrar");
+             // limpiar();
             }
          }
       

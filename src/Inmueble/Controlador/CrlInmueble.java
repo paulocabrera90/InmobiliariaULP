@@ -83,6 +83,9 @@ public class CrlInmueble implements ActionListener{
               JOptionPane.showMessageDialog(null, "Inmueble guardado");
               limpiar();
               PanelInmueble.cargarInmueblesFiltrados();
+               int i = JOptionPane.showConfirmDialog(null,"¿Desea guardar mas  inmuebles?",null,JOptionPane.YES_NO_OPTION);
+            if(i==0){}
+            else {formulario.dispose();}
               
               
           } else{ JOptionPane.showMessageDialog(null, "Error al guardar inmueble");

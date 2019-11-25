@@ -79,12 +79,12 @@ public class CtrPropietario implements ActionListener{
           if (podP.Modificar(pod)){
               
               JOptionPane.showMessageDialog(null, "Propietario Modificado");
-              limpiar();
+           //   limpiar();
               panelPropietarioList.cargarPropietarios();
               
               
           } else{ JOptionPane.showMessageDialog(null, "Error al Modificar");
-              limpiar();
+             // limpiar();
       }}
           catch(Exception num){JOptionPane.showMessageDialog(null, "Dato invalido");
       
@@ -105,8 +105,10 @@ public class CtrPropietario implements ActionListener{
               frmP.dispose();
               
               
-          } else{ JOptionPane.showMessageDialog(null, "Error al Borrar");
-              limpiar();
+          } else{ 
+              JOptionPane.showMessageDialog(null, "No se pudo eliminar propietario. Verifique si esta asociado a un inmueble");
+            //  JOptionPane.showMessageDialog(null, "Error al Borrar");
+             // limpiar();
       }
       
       }

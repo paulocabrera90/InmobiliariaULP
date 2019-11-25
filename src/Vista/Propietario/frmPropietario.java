@@ -5,6 +5,7 @@
  */
 package Vista.Propietario;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +19,7 @@ public class frmPropietario extends javax.swing.JFrame {
      */
     public frmPropietario() {
         initComponents();
+        this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/Inmo2.png")).getImage()) ;// poner imagen a jframe
         
       
     }

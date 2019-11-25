@@ -291,7 +291,7 @@ public class fromMenu extends javax.swing.JFrame {
            {
            JOptionPane.showMessageDialog(null, "Se elimino inquilino", "Info", JOptionPane.WARNING_MESSAGE);
            PanelInquilino.cargarInquilinos();
-           } else JOptionPane.showMessageDialog(null,"No se pudo eliminar inquilino","Info",JOptionPane.WARNING_MESSAGE);
+           } else JOptionPane.showMessageDialog(null, "No se puede eliminar inquilino. Verifique si tiene un contrato realizado", "Info", JOptionPane.WARNING_MESSAGE);
              }
             }
            }
