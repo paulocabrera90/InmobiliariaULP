@@ -24,7 +24,7 @@ public class CtrPropietario implements ActionListener{
         this.frmP.btnGuardar.addActionListener(this);
         this.frmP.btnModificar.addActionListener(this);
         this.frmP.btnBorrar.addActionListener(this);
-        this.frmP.btnBuscar.addActionListener(this);
+      //  this.frmP.btnBuscar.addActionListener(this);
         this.frmP.btnLimpiar.addActionListener(this);
         
     
@@ -56,7 +56,9 @@ public class CtrPropietario implements ActionListener{
               limpiar();
               
               panelPropietarioList.cargarPropietarios();
-              
+              int i = JOptionPane.showConfirmDialog(null,"¿Desea guardar mas  propietarios?",null,JOptionPane.YES_NO_OPTION);
+            if(i==0){}
+            else {frmP.dispose();}
               
           } else{ JOptionPane.showMessageDialog(null, "Error al Guardar");
               limpiar();
@@ -79,7 +81,7 @@ public class CtrPropietario implements ActionListener{
           if (podP.Modificar(pod)){
               
               JOptionPane.showMessageDialog(null, "Propietario Modificado");
-              limpiar();
+              //limpiar();
               panelPropietarioList.cargarPropietarios();
               
               
@@ -105,13 +107,13 @@ public class CtrPropietario implements ActionListener{
               frmP.dispose();
               
               
-          } else{ JOptionPane.showMessageDialog(null, "Error al Borrar");
-              limpiar();
+          } else{ JOptionPane.showMessageDialog(null, "No se pudo eliminar propietario. Verifique si esta asociado a un inmueble");
+            //  limpiar();
       }
       
       }
       
-      if (e.getSource()==frmP.btnBuscar){
+    /*  if (e.getSource()==frmP.btnBuscar){
           
           pod.setDni_propietario(Integer.parseInt(frmP.jtDni.getText()));
         
@@ -132,7 +134,7 @@ public class CtrPropietario implements ActionListener{
       }
        if(e.getSource()== frmP.btnLimpiar){
               limpiar();
-       }
+       }*/
     
 }
   

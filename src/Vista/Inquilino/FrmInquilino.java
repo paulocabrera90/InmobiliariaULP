@@ -103,7 +103,7 @@ public class FrmInquilino extends javax.swing.JFrame {
 
         jtCuit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jlbInquilino.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlbInquilino.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jlbInquilino.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbInquilino.setText("Inquilino");
 
@@ -257,22 +257,32 @@ public class FrmInquilino extends javax.swing.JFrame {
 
     private void jtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniKeyTyped
         // TODO add your handling code here:
-             char c=evt.getKeyChar();      
-          if(Character.isLetter(c)) {
-              getToolkit().beep();
-              evt.consume();
-                // Error.setText("Ingresa Solo Numeros");
-          } 
+                 char c=evt.getKeyChar();      
+         if (Character.isDigit(c)){           
+       } else 
+       {
+           getToolkit().beep();
+           evt.consume(); 
+       }
+       if(jtDni.getText().length()>7){
+            getToolkit().beep();
+           evt.consume(); 
+       }  
     }//GEN-LAST:event_jtDniKeyTyped
 
     private void jtDniGaranteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniGaranteKeyTyped
         // TODO add your handling code here:
              char c=evt.getKeyChar();      
-          if(Character.isLetter(c)) {
-              getToolkit().beep();
-              evt.consume();
-                // Error.setText("Ingresa Solo Numeros");
-          } 
+         if (Character.isDigit(c)){           
+       } else 
+       {
+           getToolkit().beep();
+           evt.consume(); 
+       }
+       if(jtDniGarante.getText().length()>7){
+            getToolkit().beep();
+           evt.consume(); 
+       }          
     }//GEN-LAST:event_jtDniGaranteKeyTyped
 
     /**

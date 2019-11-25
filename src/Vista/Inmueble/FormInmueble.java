@@ -6,6 +6,8 @@
 package Vista.Inmueble;
 
 import Inmueble.Modelo.TipoInmueble;
+import Propietario.Modelo.Propietario;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -20,6 +22,15 @@ public class FormInmueble extends javax.swing.JFrame {
         initComponents();
         dispnodisp.add(rbDisponible);
         dispnodisp.add(rbNodisponible);
+        this.setIconImage(new ImageIcon(getClass().getResource("/imagenes/Inmo2.png")).getImage()) ;// poner imagen a jframe
+        this.setLocationRelativeTo(null);
+    }
+    private void jtTxtsuperficie(java.awt.event.KeyEvent evt){
+        char c=evt.getKeyChar();      
+          if(Character.isLetter(c)) {
+              getToolkit().beep();
+              evt.consume();
+    } 
     }
 
     /**
@@ -35,13 +46,11 @@ public class FormInmueble extends javax.swing.JFrame {
         dispnodisp = new javax.swing.ButtonGroup();
         txtPrecio = new javax.swing.JTextField();
         btnBorrar = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        cboTipo_inm = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -53,15 +62,20 @@ public class FormInmueble extends javax.swing.JFrame {
         btnModificar = new javax.swing.JButton();
         rbDisponible = new javax.swing.JRadioButton();
         rbNodisponible = new javax.swing.JRadioButton();
-        cbDnipropietarios = new javax.swing.JComboBox<>();
+        cboTipo_inm = new javax.swing.JComboBox<>();
+        cboPropietarios = new javax.swing.JComboBox<>();
 
         jRadioButton2.setText("Disponible");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btnBorrar.setText("Borrar");
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
+        });
 
-        btnBuscar.setText("Buscar");
+        btnBorrar.setText("Borrar");
 
         jLabel1.setText("ID inmueble:");
 
@@ -72,7 +86,7 @@ public class FormInmueble extends javax.swing.JFrame {
 
         btnLimpiar.setText("Limpiar");
 
-        jLabel4.setText("DNI propietario:");
+        jLabel4.setText("Propietario: ");
 
         jLabel5.setText("Dirección:");
 
@@ -82,118 +96,175 @@ public class FormInmueble extends javax.swing.JFrame {
 
         jLabel8.setText("Monto mensual: ");
 
+        txtSuperficie.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSuperficieKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSuperficieKeyTyped(evt);
+            }
+        });
+
         btnGuardar.setText("Guardar");
+
+        txtID_inmueble.setEnabled(false);
+        txtID_inmueble.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtID_inmuebleKeyTyped(evt);
+            }
+        });
 
         btnModificar.setText("Modificar");
 
         rbDisponible.setText("Disponible");
 
         rbNodisponible.setText("No disponible");
+        rbNodisponible.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbNodisponibleActionPerformed(evt);
+            }
+        });
+
+        cboPropietarios.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cboPropietariosKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel7)))
-                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtID_inmueble, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                                    .addComponent(txtDireccion)
+                                    .addComponent(txtSuperficie)
+                                    .addComponent(txtPrecio))))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnModificar)
-                                .addGap(10, 10, 10)
-                                .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtID_inmueble)
-                                    .addComponent(txtDireccion)
-                                    .addComponent(txtSuperficie, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                                    .addComponent(cbDnipropietarios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel6))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel3))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(cboTipo_inm, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(3, 3, 3)
-                                                .addComponent(rbDisponible)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(rbNodisponible))))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbDisponible)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(rbNodisponible))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(cboTipo_inm, 0, 191, Short.MAX_VALUE)
+                                            .addComponent(cboPropietarios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(14, 14, 14))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel10)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addGap(23, 23, 23)
-                                        .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(btnLimpiar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(157, 157, 157)
-                        .addComponent(jLabel10))))
+                                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnModificar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnLimpiar)))
+                                .addGap(0, 20, Short.MAX_VALUE))))
+                    .addComponent(jLabel5))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtID_inmueble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel6)
-                        .addComponent(rbDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(rbNodisponible))
-                    .addComponent(cbDnipropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtID_inmueble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4)
+                    .addComponent(cboPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
                     .addComponent(jLabel7)
                     .addComponent(txtSuperficie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cboTipo_inm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(cboTipo_inm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
                     .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(31, 31, 31)
+                    .addComponent(jLabel6)
+                    .addComponent(rbDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbNodisponible))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar)
                     .addComponent(btnModificar)
                     .addComponent(btnBorrar)
-                    .addComponent(btnBuscar))
-                .addGap(18, 18, 18)
-                .addComponent(btnLimpiar)
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addComponent(btnLimpiar))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void rbNodisponibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNodisponibleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbNodisponibleActionPerformed
+
+    private void txtSuperficieKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSuperficieKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSuperficieKeyPressed
+
+    private void txtSuperficieKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSuperficieKeyTyped
+        // TODO add your handling code here:
+       char c=evt.getKeyChar();      
+          if(Character.isDigit(c)) {
+          } else {
+              getToolkit().beep();
+              evt.consume();
+          }
+    }//GEN-LAST:event_txtSuperficieKeyTyped
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();      
+          if(Character.isDigit(c)) {
+          } else {
+              getToolkit().beep();
+              evt.consume();
+          }
+        
+            
+    }//GEN-LAST:event_txtPrecioKeyTyped
+
+    private void txtID_inmuebleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtID_inmuebleKeyTyped
+        char c=evt.getKeyChar();      
+          if(Character.isDigit(c)) {
+          } else {
+              getToolkit().beep();
+              evt.consume();
+          }
+    }//GEN-LAST:event_txtID_inmuebleKeyTyped
+
+    private void cboPropietariosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboPropietariosKeyTyped
+        
+    }//GEN-LAST:event_cboPropietariosKeyTyped
 
     /**
      * @param args the command line arguments
@@ -232,11 +303,10 @@ public class FormInmueble extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnBorrar;
-    public javax.swing.JButton btnBuscar;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnModificar;
-    public javax.swing.JComboBox<Integer> cbDnipropietarios;
+    public javax.swing.JComboBox<Propietario> cboPropietarios;
     public javax.swing.JComboBox<TipoInmueble> cboTipo_inm;
     private javax.swing.ButtonGroup dispnodisp;
     private javax.swing.JLabel jLabel1;

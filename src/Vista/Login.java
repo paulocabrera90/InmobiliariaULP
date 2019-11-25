@@ -182,8 +182,8 @@ public class Login extends javax.swing.JFrame {
       //  if (jtUser.getText().length() > 0 && pass.equals("123456")){
             
        new fromMenu().setVisible(true);
-       this.setVisible(false);
-       // this.dispose();
+
+       this.dispose();
       //  } else 
      //   {
       //      JOptionPane.showMessageDialog(null,"Usuario y/o contraseña invalidos.");
