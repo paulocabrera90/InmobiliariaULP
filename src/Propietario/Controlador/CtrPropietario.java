@@ -1,8 +1,12 @@
 
 package Propietario.Controlador;
 
+import Inmueble.Controlador.CrlInmueble;
 import Propietario.Modelo.ConsultasPropietario;
 import Propietario.Modelo.Propietario;
+import Vista.Inmueble.FormInmueble;
+import static Vista.Inmueble.FormInmueble.cboPropietarios;
+import Vista.Inmueble.PanelInmueble;
 import Vista.Propietario.frmPropietario;
 import Vista.Propietario.panelPropietarioList;
 import java.awt.event.ActionEvent;
@@ -53,6 +57,10 @@ public class CtrPropietario implements ActionListener{
           if (podP.Guardar(pod)){
               
               JOptionPane.showMessageDialog(null, "Propietario Guardado");
+              PanelInmueble.cargarPropietarios();
+              CrlInmueble.cargarDniPropietario();
+            cboPropietarios.getModel().setSelectedItem(pod);
+              
               limpiar();
               
               panelPropietarioList.cargarPropietarios();
@@ -81,6 +89,7 @@ public class CtrPropietario implements ActionListener{
           if (podP.Modificar(pod)){
               
               JOptionPane.showMessageDialog(null, "Propietario Modificado");
+              PanelInmueble.cargarPropietarios();
               //limpiar();
               panelPropietarioList.cargarPropietarios();
               
@@ -103,6 +112,7 @@ public class CtrPropietario implements ActionListener{
               
               JOptionPane.showMessageDialog(null, "Propietario Borrado");
               limpiar();
+              PanelInmueble.cargarPropietarios();
               panelPropietarioList.cargarPropietarios();
               frmP.dispose();
               

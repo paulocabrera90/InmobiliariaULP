@@ -26,12 +26,12 @@ import javax.swing.JOptionPane;
 public class CrlInmueble implements ActionListener{
     private Inmueble inmueble;
     private ConsultasInmueble consulta;
-    private FormInmueble formulario;
+    private static FormInmueble formulario;
     private ArrayList<TipoInmueble> tiposinmueble=new ArrayList<TipoInmueble>();
-    private ArrayList<Propietario> propietarios=new ArrayList<Propietario>();
+    private static ArrayList<Propietario> propietarios=new ArrayList<Propietario>();
     private ConsultasTipoInmueble consultatipoinmueble=new ConsultasTipoInmueble();
     private Propietario propietario=new Propietario();
-    private ConsultasPropietario consultaprop=new ConsultasPropietario();
+    private static ConsultasPropietario consultaprop=new ConsultasPropietario();
     private TipoInmueble tipoinmueble= new TipoInmueble();
     private ConsultasTipoInmueble consultatipo=new ConsultasTipoInmueble();
     
@@ -103,8 +103,7 @@ public class CrlInmueble implements ActionListener{
           if (consulta.Modificar(inmueble)){
               
               JOptionPane.showMessageDialog(null, "Inmueble modificado");
-              limpiar();
-              
+              PanelInmueble.cargarInmueblesFiltrados();
               
           } else{ JOptionPane.showMessageDialog(null, "Error al modificar");
               limpiar();
@@ -115,12 +114,12 @@ public class CrlInmueble implements ActionListener{
       if (e.getSource()==formulario.btnBorrar){
           
           inmueble.setId_inmueble(Integer.parseInt(formulario.txtID_inmueble.getText()));
-
+          
           if (consulta.Borrar(inmueble.getId_inmueble())){
               
               JOptionPane.showMessageDialog(null, "Inmueble borrado");
-              limpiar();
               PanelInmueble.cargarInmueblesFiltrados();
+              formulario.dispose();
               
               
           } else{ JOptionPane.showMessageDialog(null, "Error al borrar");
@@ -145,14 +144,18 @@ public class CrlInmueble implements ActionListener{
       formulario.txtSuperficie.setText("");    
   }
   public void cargarTipoInmueble(){
+      
       consultatipoinmueble.ObtenerTiposInmueble(tiposinmueble);
       for(TipoInmueble elem:tiposinmueble)
       formulario.cboTipo_inm.addItem(elem);
   }
-  public void cargarDniPropietario(){
+  public static void cargarDniPropietario(){
+      propietarios.clear();
       consultaprop.obtenerPropietarios(propietarios);
+      formulario.cboPropietarios.removeAllItems();
       for(Propietario prop:propietarios)
           formulario.cboPropietarios.addItem(prop);
+      
       
   }
   /*public void cargarPropietarios(){
