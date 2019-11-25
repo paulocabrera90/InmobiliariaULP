@@ -131,7 +131,7 @@ public boolean Buscar(Propietario propi){
         
         
         ResultSet rs= null;
-      //  Connection con = conexion();
+        Connection con = conexion();
         
         String sql = "SELECT * FROM propietario WHERE dni_propietario=?"; 
         
