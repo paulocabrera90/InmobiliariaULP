@@ -375,7 +375,7 @@ public class fromMenu extends javax.swing.JFrame {
 
     private void jButtonContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonContratoActionPerformed
         // TODO add your handling code here:
-         Contrato. cont = new Contrato();
+         Contrato cont = new Contrato();
         ConsultaContrato podCont = new ConsultaContrato();
         FromContrato frmCont = new FromContrato();
 
