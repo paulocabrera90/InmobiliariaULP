@@ -1,8 +1,12 @@
 
 package Propietario.Controlador;
 
+import Inmueble.Controlador.CrlInmueble;
 import Propietario.Modelo.ConsultasPropietario;
 import Propietario.Modelo.Propietario;
+import Vista.Inmueble.FormInmueble;
+import static Vista.Inmueble.FormInmueble.cboPropietarios;
+import Vista.Inmueble.PanelInmueble;
 import Vista.Propietario.frmPropietario;
 import Vista.Propietario.panelPropietarioList;
 import java.awt.event.ActionEvent;
@@ -24,7 +28,7 @@ public class CtrPropietario implements ActionListener{
         this.frmP.btnGuardar.addActionListener(this);
         this.frmP.btnModificar.addActionListener(this);
         this.frmP.btnBorrar.addActionListener(this);
-        this.frmP.btnBuscar.addActionListener(this);
+      //  this.frmP.btnBuscar.addActionListener(this);
         this.frmP.btnLimpiar.addActionListener(this);
         
     
@@ -53,10 +57,16 @@ public class CtrPropietario implements ActionListener{
           if (podP.Guardar(pod)){
               
               JOptionPane.showMessageDialog(null, "Propietario Guardado");
+              PanelInmueble.cargarPropietarios();
+              CrlInmueble.cargarDniPropietario();
+            cboPropietarios.getModel().setSelectedItem(pod);
+              
               limpiar();
               
               panelPropietarioList.cargarPropietarios();
-              
+              int i = JOptionPane.showConfirmDialog(null,"¿Desea guardar mas  propietarios?",null,JOptionPane.YES_NO_OPTION);
+            if(i==0){}
+            else {frmP.dispose();}
               
           } else{ JOptionPane.showMessageDialog(null, "Error al Guardar");
               limpiar();
@@ -79,7 +89,12 @@ public class CtrPropietario implements ActionListener{
           if (podP.Modificar(pod)){
               
               JOptionPane.showMessageDialog(null, "Propietario Modificado");
+<<<<<<< HEAD
            //   limpiar();
+=======
+              PanelInmueble.cargarPropietarios();
+              //limpiar();
+>>>>>>> 7085a288001f97e65cf23512e9ef9d6364e622c8
               panelPropietarioList.cargarPropietarios();
               
               
@@ -101,19 +116,25 @@ public class CtrPropietario implements ActionListener{
               
               JOptionPane.showMessageDialog(null, "Propietario Borrado");
               limpiar();
+              PanelInmueble.cargarPropietarios();
               panelPropietarioList.cargarPropietarios();
               frmP.dispose();
               
               
+<<<<<<< HEAD
           } else{ 
               JOptionPane.showMessageDialog(null, "No se pudo eliminar propietario. Verifique si esta asociado a un inmueble");
             //  JOptionPane.showMessageDialog(null, "Error al Borrar");
              // limpiar();
+=======
+          } else{ JOptionPane.showMessageDialog(null, "No se pudo eliminar propietario. Verifique si esta asociado a un inmueble");
+            //  limpiar();
+>>>>>>> 7085a288001f97e65cf23512e9ef9d6364e622c8
       }
       
       }
       
-      if (e.getSource()==frmP.btnBuscar){
+    /*  if (e.getSource()==frmP.btnBuscar){
           
           pod.setDni_propietario(Integer.parseInt(frmP.jtDni.getText()));
         
@@ -134,7 +155,7 @@ public class CtrPropietario implements ActionListener{
       }
        if(e.getSource()== frmP.btnLimpiar){
               limpiar();
-       }
+       }*/
     
 }
   

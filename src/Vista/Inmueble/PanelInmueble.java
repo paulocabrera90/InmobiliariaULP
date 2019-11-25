@@ -35,7 +35,12 @@ public class PanelInmueble extends javax.swing.JPanel {
     
     public PanelInmueble() {
         initComponents();
-        modeloinmuebles=new DefaultTableModel();
+        modeloinmuebles=new DefaultTableModel(){
+             @Override
+	 public boolean isCellEditable(int row, int column) {
+         return false;
+	}
+        };
         armarCabeceraInmuebles();
         grpbotonesgrilla.add(rbDisponiblegrilla);
         grpbotonesgrilla.add(rbNodisponiblegrilla);
@@ -48,18 +53,23 @@ public class PanelInmueble extends javax.swing.JPanel {
         this.cbPrecio.setSelectedIndex(-1);
         this.cbTipoInmueble.setSelectedIndex(-1);
         cargarInmueblesFiltrados();
-  
+        
     }
     public void armarCabeceraInmuebles(){
         ArrayList<Object> columnasi=new ArrayList<Object>();
-        columnasi.add("ID inmueble");
+        columnasi.add("ID");
         columnasi.add("Características");
         columnasi.add("Propietario");
         columnasi.add("Superficie");
-        columnasi.add("Precio mensual");
+        columnasi.add("Precio");
         for(Object col:columnasi)
             modeloinmuebles.addColumn(col);
         tabInmuebles.setModel(modeloinmuebles);
+        tabInmuebles.getColumn("ID").setMaxWidth(30);
+        tabInmuebles.getColumn("Características").setMinWidth(160);
+        tabInmuebles.getColumn("Propietario").setMinWidth(100);
+        tabInmuebles.getColumn("Superficie").setMaxWidth(75);
+        tabInmuebles.getColumn("Precio").setMaxWidth(60);
     }
     public static void cargarInmuebles(ArrayList<Inmueble> inmuebles){
         borrarInmuebles();
@@ -92,11 +102,13 @@ public class PanelInmueble extends javax.swing.JPanel {
           modeloinmuebles.removeRow(i);
         }
     } 
-    public void cargarPropietarios(){
+    public static void cargarPropietarios(){
+        propietarios.clear();
       consultasp.obtenerPropietarios(propietarios);
-      
+      cbPropietarios.removeAllItems();
       for(Propietario prop:propietarios)
           cbPropietarios.addItem(prop);
+       cbPropietarios.setSelectedIndex(-1);
   }
     
     public static void cargarInmueblesFiltrados(){
@@ -201,6 +213,8 @@ public class PanelInmueble extends javax.swing.JPanel {
         btnLimpiarProp = new javax.swing.JButton();
         btnLimpiarTipo = new javax.swing.JButton();
         btnLimpiarPrecio = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         tabInmuebles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -213,6 +227,11 @@ public class PanelInmueble extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabInmuebles.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabInmueblesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabInmuebles);
 
         btnInmuebleNuevo.setText("Nuevo");
@@ -237,7 +256,7 @@ public class PanelInmueble extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Inmuebles");
 
         rbDisponiblegrilla.setText("Disponible");
@@ -312,13 +331,20 @@ public class PanelInmueble extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setText("Seleccione Disponible, No disponible o Todos según la búsqueda que desee realizar");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setText("FILTROS DE BÚSQUEDA");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                         .addGap(36, 36, 36)
                         .addComponent(btnInmuebleNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
@@ -343,10 +369,33 @@ public class PanelInmueble extends javax.swing.JPanel {
                                     .addComponent(cbPropietarios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cbTipoInmueble, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cbPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(rbDisponiblegrilla)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rbNodisponiblegrilla)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rbTodos))
+                                    .addComponent(jLabel5))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4)
+                                    .addComponent(cbPropietarios, 0, 126, Short.MAX_VALUE)
+                                    .addComponent(cbTipoInmueble, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+>>>>>>> 7085a288001f97e65cf23512e9ef9d6364e622c8
                                     .addComponent(jLabel3))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnLimpiarProp)
+<<<<<<< HEAD
                                     .addComponent(btnLimpiarTipo)
                                     .addComponent(btnLimpiarPrecio)))
                             .addComponent(jLabel2)))
@@ -354,10 +403,29 @@ public class PanelInmueble extends javax.swing.JPanel {
                         .addGap(19, 19, 19)
                         .addComponent(jLabel1)))
                 .addContainerGap(128, Short.MAX_VALUE))
+=======
+                                    .addComponent(btnLimpiarTipo)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cbPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnLimpiarPrecio))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnInmuebleNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEliminarInmueble)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAbrirInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel6))
+                        .addGap(58, 58, 58))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+>>>>>>> 7085a288001f97e65cf23512e9ef9d6364e622c8
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
@@ -379,6 +447,20 @@ public class PanelInmueble extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+=======
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1)
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+>>>>>>> 7085a288001f97e65cf23512e9ef9d6364e622c8
                             .addComponent(cbPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnLimpiarProp, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
@@ -393,18 +475,37 @@ public class PanelInmueble extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cbPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnLimpiarPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
+=======
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnInmuebleNuevo)
+                            .addComponent(btnEliminarInmueble)
+                            .addComponent(btnAbrirInmueble))
+                        .addContainerGap(88, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbNodisponiblegrilla)
+                            .addComponent(rbDisponiblegrilla)
+                            .addComponent(rbTodos))
+                        .addGap(4, 4, 4)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> 7085a288001f97e65cf23512e9ef9d6364e622c8
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInmuebleNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInmuebleNuevoActionPerformed
         
-        Inmueble inmueble= new Inmueble();
+        Inmueble inmueblenuevo= new Inmueble();
         FormInmueble formularioinmueble= new FormInmueble();
         ConsultasInmueble consultasinmueble=new ConsultasInmueble();
-        CrlInmueble crlinmueble=new CrlInmueble(inmueble,consultasinmueble,formularioinmueble);
+        CrlInmueble crlinmueble=new CrlInmueble(inmueblenuevo,consultasinmueble,formularioinmueble);
         crlinmueble.iniciar();
         formularioinmueble.setVisible(true);
+        formularioinmueble.btnBorrar.setEnabled(false);
+        formularioinmueble.btnModificar.setEnabled(false);
+        
     }//GEN-LAST:event_btnInmuebleNuevoActionPerformed
 
     private void btnEliminarInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarInmuebleActionPerformed
@@ -427,27 +528,27 @@ public class PanelInmueble extends javax.swing.JPanel {
 
     private void btnAbrirInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirInmuebleActionPerformed
        ConsultasInmueble consultainmueble= new ConsultasInmueble();
-       Inmueble inmueble= new Inmueble();
+       Inmueble inmuebleabrir= new Inmueble();
        FormInmueble formulario= new FormInmueble();
-       CrlInmueble crlinmueble=new CrlInmueble(inmueble,consultainmueble,formulario);
+       CrlInmueble crlinmueble=new CrlInmueble(inmuebleabrir,consultainmueble,formulario);
        crlinmueble.iniciar();
        formulario.setVisible(true);
-        if(tabInmuebles.getRowCount()!=0)
-        {
-            inmueble.setId_inmueble(((Integer)tabInmuebles.getValueAt(tabInmuebles.getSelectedRow(),0)));
-            consultainmueble.Buscar(inmueble);
-            formulario.txtID_inmueble.setText(Integer.toString(inmueble.getId_inmueble()));
-            formulario.txtDireccion.setText(inmueble.getDireccion_inmueble());
-            if(formulario.rbDisponible.isSelected())
-            inmueble.setEstado_inmueble("Disponible");
-            else 
-              inmueble.setEstado_inmueble("No disponible");
-            formulario.txtPrecio.setText(Double.toString(inmueble.getPrecio_base()));
-            formulario.txtSuperficie.setText(Double.toString(inmueble.getSuperficie()));
-            formulario.cboTipo_inm.setSelectedItem(inmueble.getTipo_inmueble());
-            formulario.cbDnipropietarios.setSelectedItem(inmueble.getPropietario().getDni_propietario());
-            
-        }
+       inmuebleabrir.setId_inmueble(((Integer)tabInmuebles.getValueAt(tabInmuebles.getSelectedRow(),0)));
+       consultainmueble.Buscar(inmuebleabrir);
+       formulario.txtID_inmueble.setText(Integer.toString(inmuebleabrir.getId_inmueble()));
+       formulario.txtDireccion.setText(inmuebleabrir.getDireccion_inmueble());
+       if(inmuebleabrir.getEstado_inmueble().equals("Disponible"))
+       formulario.rbDisponible.setSelected(true);
+       else 
+       formulario.rbNodisponible.setSelected(true);
+       formulario.txtPrecio.setText(Double.toString(inmuebleabrir.getPrecio_base()));
+       formulario.txtSuperficie.setText(Double.toString(inmuebleabrir.getSuperficie()));
+       formulario.cboPropietarios.getModel().setSelectedItem((Propietario)inmuebleabrir.getPropietario());
+       formulario.cboTipo_inm.getModel().setSelectedItem((TipoInmueble)inmuebleabrir.getTipo_inmueble());
+       formulario.btnGuardar.setEnabled(false);
+       formulario.btnLimpiar.setEnabled(false);
+       
+        
     }//GEN-LAST:event_btnAbrirInmuebleActionPerformed
 
     private void rbDisponiblegrillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDisponiblegrillaActionPerformed
@@ -528,6 +629,31 @@ public class PanelInmueble extends javax.swing.JPanel {
         cbPrecio.setSelectedIndex(-1);
     }//GEN-LAST:event_btnLimpiarPrecioActionPerformed
 
+    private void tabInmueblesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabInmueblesMouseClicked
+        if(evt.getClickCount()>1){
+       ConsultasInmueble consultainmueble= new ConsultasInmueble();
+       Inmueble inmuebleabrir= new Inmueble();
+       FormInmueble formulario= new FormInmueble();
+       CrlInmueble crlinmueble=new CrlInmueble(inmuebleabrir,consultainmueble,formulario);
+       crlinmueble.iniciar();
+       formulario.setVisible(true);
+       inmuebleabrir.setId_inmueble(((Integer)tabInmuebles.getValueAt(tabInmuebles.getSelectedRow(),0)));
+       consultainmueble.Buscar(inmuebleabrir);
+       formulario.txtID_inmueble.setText(Integer.toString(inmuebleabrir.getId_inmueble()));
+       formulario.txtDireccion.setText(inmuebleabrir.getDireccion_inmueble());
+       if(inmuebleabrir.getEstado_inmueble().equals("Disponible"))
+       formulario.rbDisponible.setSelected(true);
+       else 
+       formulario.rbNodisponible.setSelected(true);
+       formulario.txtPrecio.setText(Double.toString(inmuebleabrir.getPrecio_base()));
+       formulario.txtSuperficie.setText(Double.toString(inmuebleabrir.getSuperficie()));
+       formulario.cboPropietarios.getModel().setSelectedItem((Propietario)inmuebleabrir.getPropietario());
+       formulario.cboTipo_inm.getModel().setSelectedItem((TipoInmueble)inmuebleabrir.getTipo_inmueble());
+       formulario.btnGuardar.setEnabled(false);
+       formulario.btnLimpiar.setEnabled(false);
+        } 
+    }//GEN-LAST:event_tabInmueblesMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirInmueble;
@@ -544,6 +670,8 @@ public class PanelInmueble extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton rbDisponiblegrilla;
     private javax.swing.JRadioButton rbNodisponiblegrilla;

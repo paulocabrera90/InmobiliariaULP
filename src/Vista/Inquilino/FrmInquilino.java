@@ -78,6 +78,11 @@ public class FrmInquilino extends javax.swing.JFrame {
                 jtNombreActionPerformed(evt);
             }
         });
+        jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtNombreKeyTyped(evt);
+            }
+        });
 
         jlDniGarante.setText("DNI Garante");
 
@@ -98,18 +103,33 @@ public class FrmInquilino extends javax.swing.JFrame {
         jLabel6.setText("Lugar de trabajo");
 
         jtApellido.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtApellidoKeyTyped(evt);
+            }
+        });
 
         jLabel2.setText("DNI");
 
         jtCuit.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jtCuit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtCuitKeyTyped(evt);
+            }
+        });
 
-        jlbInquilino.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jlbInquilino.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jlbInquilino.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbInquilino.setText("Inquilino");
 
         jLabel3.setText("Nombre");
 
         jtGarante.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jtGarante.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtGaranteKeyTyped(evt);
+            }
+        });
 
         btnBorrar.setText("Borrar");
         btnBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -257,23 +277,76 @@ public class FrmInquilino extends javax.swing.JFrame {
 
     private void jtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniKeyTyped
         // TODO add your handling code here:
-             char c=evt.getKeyChar();      
-          if(Character.isLetter(c)) {
-              getToolkit().beep();
-              evt.consume();
-                // Error.setText("Ingresa Solo Numeros");
-          } 
+                 char c=evt.getKeyChar();      
+         if (Character.isDigit(c)){           
+       } else 
+       {
+           getToolkit().beep();
+           evt.consume(); 
+       }
+       if(jtDni.getText().length()>7){
+            getToolkit().beep();
+           evt.consume(); 
+       }  
     }//GEN-LAST:event_jtDniKeyTyped
 
     private void jtDniGaranteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniGaranteKeyTyped
         // TODO add your handling code here:
              char c=evt.getKeyChar();      
-          if(Character.isLetter(c)) {
-              getToolkit().beep();
-              evt.consume();
-                // Error.setText("Ingresa Solo Numeros");
-          } 
+         if (Character.isDigit(c)){           
+       } else 
+       {
+           getToolkit().beep();
+           evt.consume(); 
+       }
+       if(jtDniGarante.getText().length()>7){
+            getToolkit().beep();
+           evt.consume(); 
+       }          
     }//GEN-LAST:event_jtDniGaranteKeyTyped
+
+    private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
+        // TODO add your handling code here:
+        char c=evt.getKeyChar();      
+         if (Character.isLetter(c)){           
+       } else 
+       {
+           getToolkit().beep();
+           evt.consume(); 
+       }
+        
+    }//GEN-LAST:event_jtNombreKeyTyped
+
+    private void jtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyTyped
+    char c=evt.getKeyChar();      
+         if (Character.isLetter(c)){ 
+             
+       } else 
+       {
+           getToolkit().beep();
+           evt.consume(); 
+       }        // TODO add your handling code here:
+    }//GEN-LAST:event_jtApellidoKeyTyped
+
+    private void jtCuitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCuitKeyTyped
+    char c=evt.getKeyChar();      
+         if (Character.isLetter(c)){   
+             getToolkit().beep();
+            evt.consume(); 
+       } else 
+       {
+           
+       }        // TODO add your handling code here:
+    }//GEN-LAST:event_jtCuitKeyTyped
+
+    private void jtGaranteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtGaranteKeyTyped
+        char c=evt.getKeyChar();
+        if(Character.isLetter(c))
+        {}
+        else{
+        getToolkit().beep();
+           evt.consume();       }  // TODO add your handling code here:
+    }//GEN-LAST:event_jtGaranteKeyTyped
 
     /**
      * @param args the command line arguments

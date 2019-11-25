@@ -87,7 +87,7 @@ public class Inquilino {
         this.dni_garante_inquilino = dni_garante_inquilino;
     }
     
-      
-    
-
+    public String toString(){
+        return this.dni_inquilino + " - " + this.nombre_inquilino + " " + this.apellido_inquilino;
+    }
 }

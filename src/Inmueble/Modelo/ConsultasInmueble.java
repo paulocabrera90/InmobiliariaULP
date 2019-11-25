@@ -5,7 +5,7 @@
  */
 package Inmueble.Modelo;
 
-import Propietario.Modelo.Conexion;
+import Conexion.Conexion;
 import Propietario.Modelo.ConsultasPropietario;
 import Propietario.Modelo.Propietario;
 import com.mysql.jdbc.Statement;
@@ -103,14 +103,10 @@ public boolean Borrar(int id){
         
         try {
             ps=con.prepareStatement(sql);
-            
             ps.setInt(1,id);
-            
-           
             ps.execute();
             return true;
-            
-            
+
         }
         catch(SQLException e){
         System.err.println(e);
